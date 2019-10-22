@@ -1,7 +1,7 @@
 import {fromJS} from 'immutable';
 
 const defaultState = fromJS({
-
+    in: true,
 });
 
 export default (state = defaultState, action) => {
