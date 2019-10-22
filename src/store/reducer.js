@@ -1,4 +1,3 @@
-/*
 import {combineReducers} from 'redux-immutable';
 import {reducer as headerReducer} from '../common/Header/store/index';
 import {reducer as orderReducer} from '../pages/Order/store/index';
@@ -8,4 +7,4 @@ const reducer = combineReducers({
     order: orderReducer,
 });
 
-export default reducer;*/
+export default reducer;
