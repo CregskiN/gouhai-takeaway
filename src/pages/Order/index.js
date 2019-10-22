@@ -12,7 +12,7 @@ class Order extends Component {
         const {handleTimeClick} = this.props;
         return (
             <OrderWrapper>
-                <ChooseWrapper>
+                <ChooseWrapper> 
                     <div className='choose-time'>
                         <span onClick={handleTimeClick}>请选择送餐时间(免配送费)：</span>
                         {this.getTimeList()}
