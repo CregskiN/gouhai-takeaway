@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {actionCreators} from './store/index';
 import {
     OrderWrapper,
     ChooseWrapper,
@@ -8,12 +9,12 @@ import {
 class Order extends Component {
 
     render() {
-
+        const {handleTimeClick} = this.props;
         return (
             <OrderWrapper>
                 <ChooseWrapper>
                     <div className='choose-time'>
-                        <span>请选择送餐时间(免配送费)：</span>
+                        <span onClick={handleTimeClick}>请选择送餐时间(免配送费)：</span>
                         {this.getTimeList()}
                     </div>
                     <div className='choose-school'>
@@ -35,12 +36,16 @@ class Order extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    isChoosingTime: state.get(['header','isChoosingTime']),
-    isChoosingSchool: state.get(['header','isChoosingTime']),
+    isChoosingTime: state.get(['header', 'isChoosingTime']),
+    isChoosingSchool: state.get(['header', 'isChoosingTime']),
 });
 
-const mapDispatchToProps = () => ({
-
-});
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleTimeClick() {
+            dispatch(actionCreators.changeChoosingTime());
+        }
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order);
