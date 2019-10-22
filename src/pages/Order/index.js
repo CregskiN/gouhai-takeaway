@@ -8,7 +8,7 @@ import {
 
 class Order extends Component {
 
-    render() { 
+    render() {
         const {handleTimeClick} = this.props;
         return (
             <OrderWrapper>
