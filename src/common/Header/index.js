@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
     HeaderWrapper,
-    NavItem,
+    Title,
+    SubTitle
 } from './style';
 
 class Header extends Component {
@@ -10,13 +11,11 @@ class Header extends Component {
         return (
             <HeaderWrapper>
                 <img className='logo' src={require('../../images/Header/logo.jpg')} alt={''}/>
-                <NavItem className='orderItem'>点餐</NavItem>
-                <NavItem className='orderItem'>管理</NavItem>
+                <Title>够嗨美食城</Title>
+                <SubTitle>· 外卖</SubTitle>
             </HeaderWrapper>
         )
     }
-
-
 }
 
 export default Header;

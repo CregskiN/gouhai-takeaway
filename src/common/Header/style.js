@@ -1,30 +1,27 @@
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.span`
-    display: block;
+export const HeaderWrapper = styled.div`
+    display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
-    height: 60px;
+    height: 8vh;
     background: #f2f2f2;
     .logo {
-        float: left;
-        align-items: center;
         height: 100%;
         border-radius: 50%;
     }
 `;
 
-export const NavItem = styled.div`
-    margin: 15px 0 0 14px;
-    height: 27px;
-    text-align: center;
-    line-height: 25px;
-    font-size: 17px;
-    
-    &.orderItem{
-        color: rgb(234,111,90);
-        border-bottom-style: solid;
-        float: left;
-    }
-    
+export const Title = styled.div `
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+`;
+
+export const SubTitle = styled.div `
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    margin-left: 5px;
 `;
