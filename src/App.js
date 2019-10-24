@@ -5,6 +5,7 @@ import Header from './common/Header';
 import Order from './pages/Order/index';
 import {Provider} from 'react-redux';
 import Management from "./pages/Management";
+import ManagementCommodity from "./pages/ManagementCommodity";
 
 
 function App() {
@@ -13,8 +14,9 @@ function App() {
             <Provider store={store}>
                 <BrowserRouter>
                     <Header/>
-                    <Route path='/' exact component={Order}/>
-                    <Route path='/management' exact component={Management}/>
+                    <Route path='/' exact component={Order} />
+                    <Route path='/management' exact component={Management} />
+                    <Route path='/management/commodity' exact component={ManagementCommodity} />
                 </BrowserRouter>
             </Provider>
         </div>

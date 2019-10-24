@@ -1,0 +1,5 @@
+const CHANGE_COMMODITY_ENABLE = 'managementCommodity/CHANGE_COMMODITY_ENABLE';
+
+export {
+    CHANGE_COMMODITY_ENABLE
+};
