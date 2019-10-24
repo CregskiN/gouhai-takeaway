@@ -72,8 +72,6 @@ export const options = [
     },
 ];
 
-function onChange(value) {
-    console.log(value);
-}
+
 
 

@@ -1,17 +1,9 @@
-import {fromJS} from 'immutable';
-import {actionTypes} from './index';
+import {combineReducers} from 'redux-immutable';
+import {reducer as foodList} from '../components/Choose/store/index';
 
-const defaultState = fromJS({
-    isChoosingTime: false,
-    isChoosingSchool: false,
+
+const reducer =combineReducers({
+    food: foodList,
 });
 
-export default (state = defaultState, action) => {
-    switch (action.type) {
-        case actionTypes.CHANGE_ISCHOOSINGTIME:
-            console.log("执行到reducer了！");
-            return state.set('isChoosingTime',!state.isChoosingTime);
-        default:
-            return state;
-    }
-};
+export default reducer;

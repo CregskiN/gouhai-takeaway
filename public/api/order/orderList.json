@@ -1,0 +1,63 @@
+{
+    "success": true,
+    "foodList": [
+        {
+            "id": 1,
+            "name": "够嗨卤肉饭",
+            "desc": "好吃不贵，吃过都说好！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/b451cbfc875d11e6b87c0242ac110003_600w_495h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 2,
+            "name": "心意满满鸡排饭",
+            "desc": "有蛋有肉美滋滋！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/164c4b0c8a8d11e6b87c0242ac110003_1619w_1080h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 3,
+            "name": "够嗨烤肉拌饭",
+            "desc": "妈妈我想吃烤肉拌饭",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 4,
+            "name": "够嗨黑椒肥牛饭",
+            "desc": "好吃不贵，吃过都说好！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 5,
+            "name": "够嗨鸡丁饭",
+            "desc": "好吃不贵，吃过都说好！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 6,
+            "name": "够嗨卤肉饭",
+            "desc": "好吃不贵，吃过都说好！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        },
+        {
+            "id": 7,
+            "name": "够嗨卤肉饭",
+            "desc": "好吃不贵，吃过都说好！",
+            "originPrice": 15,
+            "currentPrice": 10,
+            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+        }
+    ]
+
+
+}

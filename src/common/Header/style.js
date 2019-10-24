@@ -5,11 +5,14 @@ export const HeaderWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     width: 100%;
-    height: 8vh;
+    height: 9vh;
     background: #f2f2f2;
-    .logo {
+    .logo-wrapper{
         height: 100%;
-        border-radius: 50%;
+        .logo {
+            height: 100%;
+            border-radius: 50%;
+        }
     }
 `;
 
