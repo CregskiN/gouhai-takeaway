@@ -11,7 +11,7 @@ function App() {
     return (
         <div className="App">
             <Provider store={store}>
-                <BrowserRouter> 
+                <BrowserRouter>
                     <Header/>
                     <Route path='/' exact component={Order}/>
                     <Route path='/Checkout' exact component={Checkout}/>
