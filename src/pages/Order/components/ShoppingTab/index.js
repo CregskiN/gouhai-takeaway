@@ -10,17 +10,18 @@ import {
 class ShoppingTab extends PureComponent {
 
     render() {
+        const {totalPrice, totalSum} = this.props;
         return (
             <ShoppingWrapper>
                 <TabLeft>
                     <img className='takeaway-img' src={require('../../images/Shopping/fastfood.png')} alt={''}/>
                     <div className='totalPrice'>
-                        &nbsp;&nbsp;￥{this.props.totalPrice}.00
+                        &nbsp;&nbsp;￥{totalPrice}.00
                     </div>
                 </TabLeft>
 
                 <TabRight>
-                    <Link className='button' to={'/Checkout'}>
+                    <Link className='button' to = {totalSum === 0 ? '' : '/Checkout'}>
                         <div className='ok'>选好了</div>
                         <div className='okk'>order></div>
                     </Link>
@@ -32,7 +33,8 @@ class ShoppingTab extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    totalPrice:state.getIn(['order','select','totalPrice']),
+    totalPrice: state.getIn(['order', 'select', 'totalPrice']),
+    totalSum: state.getIn(['order', 'select', 'totalSum']),
 });
 
 const mapDispatchToProps = (dispatch) => ({});
