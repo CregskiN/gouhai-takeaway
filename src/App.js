@@ -6,7 +6,8 @@ import {Provider} from 'react-redux';
 import Header from './common/Header';
 import Management from "./pages/Management";
 import ManagementCommodity from './pages/ManagementCommodity';
-import Checkout from "./pages/Checkout/index"
+import AddCommodity from './pages/AddCommodity';
+import Checkout from "./pages/Checkout/index";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path='/Checkout' exact component={Checkout} />
                     <Route path='/management' exact component={Management} />
                     <Route path='/management/commodity' exact component={ManagementCommodity} />
+                    <Route path='/management/addcommodity' exact component={AddCommodity} />
                 </BrowserRouter>
             </Provider>
         </div>

@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {actionCreators} from './store'
 import {
     Container,
-    CommodityList,
     CommodityListTitle,
+    CommodityList,
     CommodityItem,
     CommodityInfo,
     CommodityTitleSetting,

@@ -5,43 +5,43 @@ const defaultState = fromJS({
     commodityList: [{
         id: 0,
         name: "卤肉饭",
-        originalPrice: "12",
-        currentPrice: "10",
+        originalPrice: 12,
+        currentPrice: 10,
         enable: true,
         isUnderRevision: false
     },{
         id: 1,
         name: "炸鸡饭",
-        originalPrice: "12",
-        currentPrice: "10",
+        originalPrice: 12,
+        currentPrice: 10,
         enable: true,
         isUnderRevision: false
     },{
         id: 2,
         name: "烤肉拌饭",
-        originalPrice: "12",
-        currentPrice: "10",
+        originalPrice: 12,
+        currentPrice: 10,
         enable: false,
         isUnderRevision: false
     },{
         id: 3,
         name: "黑椒肥牛饭",
-        originalPrice: "15",
-        currentPrice: "12",
+        originalPrice: 15,
+        currentPrice: 12,
         enable: true,
         isUnderRevision: false
     },{
         id: 4,
         name: "麻辣火锅",
-        originalPrice: "20",
-        currentPrice: "17",
+        originalPrice: 20,
+        currentPrice: 17,
         enable: true,
         isUnderRevision: false
     },{
         id: 5,
         name: "鸡米花",
-        originalPrice: "10",
-        currentPrice: "8",
+        originalPrice: 10,
+        currentPrice: 8,
         enable: true,
         isUnderRevision: false
     }],
