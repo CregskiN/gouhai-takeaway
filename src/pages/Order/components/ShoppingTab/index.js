@@ -13,16 +13,16 @@ class ShoppingTab extends PureComponent {
         return (
             <ShoppingWrapper>
                 <TabLeft>
-                    <img className='takeaway-img' src={require('../../images/Shopping/takeaway.png')} alt={''}/>
+                    <img className='takeaway-img' src={require('../../images/Shopping/fastfood.png')} alt={''}/>
                     <div className='totalPrice'>
-                        ￥10.00
+                        &nbsp;&nbsp;￥{this.props.totalPrice}.00
                     </div>
                 </TabLeft>
 
                 <TabRight>
                     <Link className='button' to={'/Checkout'}>
                         <div className='ok'>选好了</div>
-                        <div className='okk'>order</div>
+                        <div className='okk'>order></div>
                     </Link>
                 </TabRight>
             </ShoppingWrapper>
@@ -31,7 +31,9 @@ class ShoppingTab extends PureComponent {
 
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    totalPrice:state.getIn(['order','select','totalPrice']),
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 

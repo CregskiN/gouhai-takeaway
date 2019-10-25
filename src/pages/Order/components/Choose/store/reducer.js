@@ -5,11 +5,11 @@ const defaultState = fromJS({
     foodList: [],
 });
 
+
 export default (state = defaultState, action) => {
     switch (action.type) {
         case actionTypes.GET_ORDERLIST:
-            return _changeOrderList(state,action);
-
+            return _getOrderList(state,action);
 
         default:
             return state;
@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
 };
 
 
-const _changeOrderList = (state, action) => {
+const _getOrderList = (state, action) => {
     return(
         state.merge({
             foodList: fromJS(action.foodList),
