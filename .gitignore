@@ -29,3 +29,12 @@ gen
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.gitignore
+.idea/codeStyles/
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/order.iml
+.idea/vcs.xml
+node_modules/
+yarn-error.log
