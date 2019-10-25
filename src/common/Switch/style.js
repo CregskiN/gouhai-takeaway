@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Track = styled.div.attrs({
+const Track = styled.div.attrs(props => ({
     // 声明自定义styled组件的props属性
     background: props => props.color
-}) `
+})) `
     position: relative;
     display: flex;
     flex-direction: row;
@@ -14,14 +14,14 @@ const Track = styled.div.attrs({
     background: rgb(204, 204, 204);
     &.turn-on {
         background: #1AAD19;
-        background: ${props => props.background};
+        background: ${props => {return props.background}};
     }
     &.discolor-enter {
         transition: all .2s ease-out;
     }
     &.discolor-enter-active {
         background: #1AAD19;
-        background: ${props => props.background};
+        background: ${props => {return props.background}};
     }
     &.discolor-exit {
         transition: all .2s ease-out;
