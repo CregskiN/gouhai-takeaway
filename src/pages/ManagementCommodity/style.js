@@ -4,6 +4,7 @@ const Container = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 10px;
     width: 100%;
     min-height: 92vh;
     background: #f2f2f2;
@@ -59,7 +60,6 @@ const CommodityInfo = styled.div `
 `;
 
 // 编辑状态下的CommodityInfo区域
-
 const CommodityTitleSetting = styled.div `
     display: flex;
     flex-direction: row;
@@ -70,10 +70,14 @@ const CommodityTitleSetting = styled.div `
         font-size: 22px;
     }
 `;
+// 编辑状态下的CommodityInfo区域
 const CommodityTitleInput = styled.input `
     display: block;
     width: 100px;
     height: 22px;
+    margin-left: 5px;
+    padding-left: 4px;
+    box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid #777;
 `;
@@ -98,11 +102,32 @@ const CommodityPrice = styled.div `
     }
 `;
 
+// 编辑状态下的CommodityInfo区域
+const OriginalPriceSetting = styled.div `
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 8px;
+    .tips {
+        color: #777;
+        font-size: 18px;
+    }
+    .input {
+        display: block;
+        margin-left: 4px;
+        width: 30px;
+        height: 18px;
+        padding-left: 2px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #777;
+    }
+`;
+
 const CommodityController = styled.div `
     display: flex;
     flex-direction: row;
     align-items: center;
-    //background: aqua;
 `;
 
 // 编辑状态下的CommodityController区域
@@ -152,6 +177,7 @@ export {
     CommodityTitleSetting,
     CommodityTitleInput,
     CommodityPrice,
+    OriginalPriceSetting,
     CommodityController,
     CommodityControllerButton
 };

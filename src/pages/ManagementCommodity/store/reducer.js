@@ -45,7 +45,6 @@ const defaultState = fromJS({
         enable: true,
         isUnderRevision: false
     }],
-    // underRevisionEnable: true,
     revisionEnable: true,
     temCommodity: {}
 });
@@ -72,22 +71,14 @@ export default (state = defaultState, action) => {
         // 点击CommodityInfo时，进入编辑模式。注意：此处action.item为immutable对象
         case constants.UNDER_REVISION:
             // immutable深层嵌套查找并修改。.update()为immutable方法， .findIndex()为ES6数组的方法
+            // 确定index
+            const index = state.get('commodityList').findIndex(($obj) => {
+                return $obj.get('id') === action.id;
+            });
             return state.merge({
                 revisionEnable: false,
-                temCommodity: state.get('commodityList', ($temList) => {
-                    const index = $temList.findIndex(($obj) => {
-                        return $obj.get('id') === action.id;
-                    });
-                    if (index === -1) {
-                        return {};
-                    } else {
-                        return $temList.get(index);
-                    }
-                })
+                temCommodity: state.get('commodityList').get(index)
             }).update('commodityList', ($temList) => {
-                const index = $temList.findIndex(($obj) => {
-                    return $obj.get('id') === action.id;
-                });
                 if (index === -1) {
                     return $temList;
                 } else {
@@ -96,6 +87,31 @@ export default (state = defaultState, action) => {
                     });
                 }
             });
+
+        // 编辑模式下，CommodityTitleInput的value改变时
+        case constants.COMMODITY_TITLE_INPUT_CHANGE:
+            return state.setIn(['temCommodity', 'name'], action.value);
+
+        // 编辑模式下，OriginalPriceInput改变时
+        case constants.ORIGINAL_PRICE_INPUT_CHANGE:
+            return state.setIn(['temCommodity', 'originalPrice'], action.value);
+
+        // 编辑模式下，CurrentPriceInput改变时
+        case constants.CURRENT_PRICE_INPUT_CHANGE:
+            return state.setIn(['temCommodity', 'currentPrice'], action.value);
+
+        // 点击"保存"触发，保存编辑数据至服务器，并退出编辑模式
+        case constants.ON_SAVE:
+            return state.update('commodityList', ($temList) => {
+                const index = $temList.findIndex(($obj) => {
+                    return $obj.get('id') === action.id;
+                });
+                if (index === -1) {
+                    return $temList;
+                } else {
+                    return $temList.set(index, state.get('temCommodity'));
+                }
+            }).set('revisionEnable', true);
 
         //  点击"取消"触发，退出编辑模式
         case constants.ON_CANCEL:
