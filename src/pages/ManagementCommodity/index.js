@@ -49,7 +49,7 @@ class ManagementCommodity extends Component {
                                                         isTurnOn={item.get('enable')}
                                                         color='1AAD19'
                                                         onClick={() => {
-                                                            this.props.handleSwitch(item.get('id'), item.get('enable'));
+                                                            this.props.handleSwitch(item.get('id'), item.get('enable'), item);
                                                         }}
                                                     />
                                                 </CommodityController>
@@ -85,7 +85,7 @@ class ManagementCommodity extends Component {
                                                 <CommodityController>
                                                     <CommodityControllerButton
                                                         className="save"
-                                                        onClick={() => {this.props.handleSave(item.get('id'));}}
+                                                        onClick={() => {this.props.handleSave(item.get('id'), this.props.temCommodity);}}
                                                     >保存
                                                     </CommodityControllerButton>
                                                     <CommodityControllerButton
@@ -104,6 +104,22 @@ class ManagementCommodity extends Component {
             </Container>
         )
     }
+
+    componentDidMount() {
+        const typeStr = JSON.stringify({    // 指示灯，判断发送指令是什么
+            type: "caidan"
+        });
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        ws.onopen = () => {
+            console.log('connected');
+            ws.send(typeStr);
+        };
+        ws.onmessage = (event) => {
+            console.log(event);
+            console.log(JSON.parse(event.data));
+            this.props.loadCommodityList(JSON.parse(JSON.parse(event.data).data));
+        };
+    }
 }
 
 const mapStateToProps = (state) => ({
@@ -112,10 +128,17 @@ const mapStateToProps = (state) => ({
     temCommodity: state.getIn(['managementCommodity', 'temCommodity'])
 });
 const mapDispatchToProps = (dispatch) => ({
-    // 点击Switch开关时，切换enable
-    handleSwitch(id, isTurnOn) {
+    // 从服务器加载商品列表
+    loadCommodityList(commodityList) {
+        console.log(commodityList);
+        dispatch(actionCreators.loadCommodity(commodityList));
+    },
+
+    // 点击Switch开关时，切换enable，并向服务器发送enable更改信息。注意：这里的item是immutable对象
+    handleSwitch(id, isTurnOn, item) {
         const newIsTurnOn = !isTurnOn;
-        dispatch(actionCreators.switchTrigger(id, newIsTurnOn));
+        dispatch(actionCreators.switchTrigger(id, newIsTurnOn));    // 切换enable
+        dispatch(actionCreators.switchTriggerPost(item));   // 向服务器发送enable更改信息
     },
 
     // 点击CommodityInfo时，进入编辑模式。注意：此处参数item为immutable对象
@@ -143,9 +166,9 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actionCreators.currentPriceInputChange(value));
     },
 
-    // 点击"保存"触发，保存编辑数据至服务器，并退出编辑模式
-    handleSave(id) {
-        dispatch(actionCreators.onSave(id));
+    // 点击"保存"触发，保存编辑数据至本地store，同时post给服务器，并退出编辑模式
+    handleSave(id, immutableTemCommodity) {
+        dispatch(actionCreators.onSave(id, immutableTemCommodity));
     },
 
     //  点击"取消"触发，退出编辑模式

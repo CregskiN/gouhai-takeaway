@@ -1,6 +1,12 @@
 import {constants} from './index';
 // import axios from 'axios';
-// import {fromJS} from 'immutable';
+import {fromJS} from 'immutable';
+
+// 从服务器加载商品列表
+const loadCommodity = (commodityList) => ({
+    type: constants.LOAD_COMMODITY_LIST,
+    commodityList:  fromJS(commodityList)
+});
 
 // 点击Switch开关时，切换enable
 const switchTrigger = (id, newIsTurnOn) => ({
@@ -8,6 +14,24 @@ const switchTrigger = (id, newIsTurnOn) => ({
     id,
     enable: newIsTurnOn
 });
+
+// 点击Switch开关时，向服务器发送enable更改信息
+const switchTriggerPost = (item) => {
+    return (dispatch) => {
+        item.set('enable', !item.get('enable'));
+        const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
+            type: "changecaidan",
+            data: item.toJS()
+        });
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        ws.onopen = () => {
+            console.log('connected');
+            ws.send(myStr);
+        };
+        console.log(item.toJS());
+        console.log("switchTriggerPost done");
+    }
+};
 
 // 点击CommodityInfo时，进入编辑模式。注意：此处参数item为immutable对象
 const underRevision = (id, item) => ({
@@ -34,8 +58,25 @@ const currentPriceInputChange = (value) => ({
     value,
 });
 
-// 点击"保存"触发，保存编辑数据至服务器，并退出编辑模式
-const onSave = (id) => ({
+// 点击"保存"触发，保存编辑数据至本地store，同时post给服务器，并退出编辑模式
+const onSave = (id, temCommodity) => {
+    return (dispatch) => {
+        const myCommodity = temCommodity.toJS();
+        const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
+            type: "changecaidan",
+            data: myCommodity
+        });
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        ws.onopen = () => {
+            console.log('connected');
+            ws.send(myStr);
+        };
+        dispatch(_SaveTemCommodityToLocal(id));
+    }
+};
+
+// redux-thunk私有方法，保存编辑数据至本地store，并退出编辑模式
+const _SaveTemCommodityToLocal = (id) => ({
     type: constants.ON_SAVE,
     id,
 });
@@ -47,7 +88,9 @@ const onCancel = (id) => ({
 });
 
 export {
+    loadCommodity,
     switchTrigger,
+    switchTriggerPost,
     underRevision,
     commodityTitleInputChange,
     originalPriceInputChange,

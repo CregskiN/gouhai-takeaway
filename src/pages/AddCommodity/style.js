@@ -161,6 +161,9 @@ const CancelArea = styled.div `
         color: #777;
         font-size: 19px;
     }
+    a {
+        color: #777;
+    }
 `;
 const CancelButton = styled.div `
     display: flex;

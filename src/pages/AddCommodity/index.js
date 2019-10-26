@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux'
-import {actionCreators} from './store'
+import {connect} from 'react-redux';
+import {actionCreators} from './store';
+import {Link} from "react-router-dom";
 import {
     Container,
     ComponentTitle,
@@ -57,12 +58,14 @@ class AddCommodity extends Component {
                 <CommodityPoster>
                     <PostArea>
                         <div className="tips">添加</div>
-                        <PostButton>OK</PostButton>
+                        <PostButton onClick={() => {this.props.handlePostButton(this.props.commodity)}}>OK</PostButton>
                     </PostArea>
                     <div className="separator"/>
                     <CancelArea>
                         <div className="tips">取消</div>
-                        <CancelButton>Cancel</CancelButton>
+                        <Link to="/management">
+                            <CancelButton onClick={this.props.handleCancelButton}>Cancel</CancelButton>
+                        </Link>
                     </CancelArea>
                 </CommodityPoster>
             </Container>
@@ -71,7 +74,7 @@ class AddCommodity extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    commodity: state.getIn(['addCommodity', 'commodity'])
+    commodity: state.getIn(['addCommodity', 'commodity']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -97,7 +100,17 @@ const mapDispatchToProps = (dispatch) => ({
     handleSwitch(isTurnOn) {
         const newIsTurnOn = !isTurnOn;
         dispatch(actionCreators.commodityEnableSwitch(newIsTurnOn));
-    }
+    },
+
+    // 点击"添加"时触发，添加数据
+    handlePostButton(immutableCommodity) {
+        dispatch(actionCreators.onPost(immutableCommodity));
+    },
+
+    // 点击"取消"时触发，返回后台管理首页
+    handleCancelButton() {
+        dispatch(actionCreators.onCancel());
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCommodity);

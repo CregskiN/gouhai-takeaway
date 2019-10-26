@@ -26,9 +26,32 @@ const commodityEnableSwitch = (newIsTurnOn) => ({
     enable: newIsTurnOn
 });
 
+// 点击"添加"时触发，添加数据至服务器
+const onPost = (immutableCommodity) => {
+    return (dispatch) => {
+        const myStr = JSON.stringify({
+            type: "addcaidan",
+            data: immutableCommodity.toJS()
+        });
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        // console.log(ws);
+        ws.onopen = () => {
+            console.log('connected');
+            ws.send(myStr);
+        };
+    };
+};
+
+// 点击"取消"时触发，返回后台管理首页
+const onCancel = () => ({
+    type: constants.ON_CANCEL
+});
+
 export {
     commodityTitleInputChange,
     originalPriceInputChange,
     currentPriceInputChange,
-    commodityEnableSwitch
+    commodityEnableSwitch,
+    onPost,
+    onCancel
 };

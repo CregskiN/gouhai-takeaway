@@ -8,6 +8,8 @@ const defaultState = fromJS({
         originalPrice: 12,
         currentPrice: 10,
         enable: true,
+        miaoshu: "无",
+        sum: 1,
         isUnderRevision: false
     },{
         id: 1,
@@ -15,6 +17,7 @@ const defaultState = fromJS({
         originalPrice: 12,
         currentPrice: 10,
         enable: true,
+        miaoshu: "无",
         isUnderRevision: false
     },{
         id: 2,
@@ -22,6 +25,8 @@ const defaultState = fromJS({
         originalPrice: 12,
         currentPrice: 10,
         enable: false,
+        miaoshu: "无",
+        sum: 1,
         isUnderRevision: false
     },{
         id: 3,
@@ -29,6 +34,8 @@ const defaultState = fromJS({
         originalPrice: 15,
         currentPrice: 12,
         enable: true,
+        miaoshu: "无",
+        sum: 1,
         isUnderRevision: false
     },{
         id: 4,
@@ -36,6 +43,8 @@ const defaultState = fromJS({
         originalPrice: 20,
         currentPrice: 17,
         enable: true,
+        miaoshu: "无",
+        sum: 1,
         isUnderRevision: false
     },{
         id: 5,
@@ -43,6 +52,8 @@ const defaultState = fromJS({
         originalPrice: 10,
         currentPrice: 8,
         enable: true,
+        miaoshu: "无",
+        sum: 1,
         isUnderRevision: false
     }],
     revisionEnable: true,
@@ -52,6 +63,10 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
 
     switch (action.type) {
+        // 从服务器加载商品列表
+        case constants.LOAD_COMMODITY_LIST:
+            return state.set('commodityList', action.commodityList);
+
         // 点击Switch开关时，切换enable
         case constants.CHANGE_COMMODITY_ENABLE:
             // immutable深层嵌套查找并修改。.update()为immutable方法， .findIndex()为ES6数组的方法
