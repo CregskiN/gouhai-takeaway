@@ -16,7 +16,9 @@ class Management extends Component{
                     <Link to="/management/commodity">
                         <CommodityButton>商品管理</CommodityButton>
                     </Link>
-                    <CommodityButton>添加商品</CommodityButton>
+                    <Link to="/management/addcommodity">
+                        <CommodityButton>添加商品</CommodityButton>
+                    </Link>
                 </Commodity>
             </Container>
         )

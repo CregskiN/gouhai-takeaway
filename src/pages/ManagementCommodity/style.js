@@ -10,12 +10,6 @@ const Container = styled.div `
     background: #f2f2f2;
 `;
 
-const CommodityList = styled.div `
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
 const CommodityListTitle = styled.div `
     display: flex;
     flex-direction: column;
@@ -26,9 +20,15 @@ const CommodityListTitle = styled.div `
     .line {
         width: 100%;
         height: 2px;
-         background: rgb(234,111,90);
+        background: rgb(234,111,90);
         border-radius: 1px;
     }
+`;
+
+const CommodityList = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const CommodityItem = styled.div `
@@ -170,8 +170,8 @@ const CommodityControllerButton = styled.div `
 
 export {
     Container,
-    CommodityList,
     CommodityListTitle,
+    CommodityList,
     CommodityItem,
     CommodityInfo,
     CommodityTitleSetting,
