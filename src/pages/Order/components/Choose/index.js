@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 import {
@@ -9,7 +9,7 @@ import {
 import {actionCreators} from "./store/index";
 
 
-class Choose extends Component {
+class Choose extends PureComponent {
     render() {
         return (
             <ChooseWrapper>
@@ -35,14 +35,15 @@ class Choose extends Component {
                                                 <span className='currentPrice'>现价:{item.get('currentPrice')}￥</span>
                                             </div>
                                         </div>
-                                        <div className='add'  onClick={() => console.log('+按钮被点击了！')}>+</div>
+                                        <div className='add'
+                                             onClick={() => this.props.handleAddFood(this.props.foodList, item.get('id'))}>+
+                                        </div>
                                     </div>
                                 </FoodItem>
                             )
                         })
                     }
                 </FoodWrapper>
-
 
 
             </ChooseWrapper>
@@ -57,15 +58,18 @@ class Choose extends Component {
 
 
 const mapStateToProps = (state) => ({
-    foodList: state.getIn(['order','food','foodList']),
+    foodList: state.getIn(['order', 'food', 'foodList']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getOrderList() {
         dispatch(actionCreators.getOrderList());
+    },
+    handleAddFood(foodList, id) {
+        dispatch(actionCreators.addShoppingCart(foodList, id));
     }
 });
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Choose);
+export default connect(mapStateToProps, mapDispatchToProps)(Choose);
 
