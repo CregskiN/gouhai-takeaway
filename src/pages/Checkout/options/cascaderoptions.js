@@ -4,7 +4,7 @@ export const options = [
         label: '黄骅',
         children: [
             {
-                value: 'hebeinongda',
+                value: '农业大学',
                 label: '河北农大',
                 children: [
                     {
@@ -27,7 +27,7 @@ export const options = [
             },
 
             {
-                value: 'beizhongyi',
+                value: '中医药大学',
                 label: '北中医',
                 children: [
                     {
@@ -59,11 +59,11 @@ export const options = [
         children: [
              {
         value: '_forbidden',
-        label: '暂未开通此项业务',
+        label: '施工ing',
         children: [
             {
                 value: '_forbidden',
-                label: '还点？！'
+                label: '施工ing'
             }
         ]
             },
@@ -71,7 +71,6 @@ export const options = [
         ],
     },
 ];
-
 
 
 

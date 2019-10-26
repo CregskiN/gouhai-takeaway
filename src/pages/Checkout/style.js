@@ -4,22 +4,12 @@ export const CheckoutWrapper = styled.div`
     position: absolute;
     top: 9vh; left: 0; right: 0;
     width: 100%;
-    padding: 10px;
+    padding:  0 10px 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     
 
-`;
-
-export const SchoolWrapper = styled.div`
-    width: 100%;
-    .wrap{
-        width: 100%;
-        .schoolAndTime-cas { //可以加点击动画
-            width: 50vw;
-        }
-    }
 `;
 
 export const CheckoutTable = styled.div`
@@ -106,6 +96,34 @@ export const HasChoosedItem = styled.div`
         }
     }
 `;
+
+export const SchoolWrapper = styled.div`
+    width: 100%;
+    margin: 10px;
+    .wrap{
+        width: 100%;
+        .schoolAndTime-cas { //可以加点击动画
+            width: 50vw;
+        }
+    }
+`;
+
+export const Input = styled.input`
+    padding: 5px 5px 5px 20px;
+    border: solid 1px #f2f2f2;
+    border-radius: 5px;
+    box-shadow: #f2f2f2 0 0 10px;
+`;
+
+export const SubmitButton = styled.div`
+    display: inline-block;
+    background: #fff;
+    padding: 2px 4px;
+    border: solid 1px #f2f2f2;
+    border-radius: 5px;
+    box-shadow: #f2f2f2 0 0 10px;
+`;
+
 
 export const ShoppingWrapper = styled.div`
     position: fixed;

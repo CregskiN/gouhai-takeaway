@@ -11,6 +11,7 @@ import {actionCreators} from "./store/index";
 
 class Choose extends PureComponent {
     render() {
+        const {foodList, handleAddFood} = this.props;
         return (
             <ChooseWrapper>
                 <FoodWrapper className='choose-food'>
@@ -18,7 +19,7 @@ class Choose extends PureComponent {
                     <span>请选择菜品：</span>
 
                     {
-                        this.props.foodList.map((item) => {
+                        foodList.map((item) => {
                             return (
                                 <FoodItem key={item}>
                                     <img className='food-left logo' src={item.get('imgUrl')} alt={''}/>
@@ -36,7 +37,8 @@ class Choose extends PureComponent {
                                             </div>
                                         </div>
                                         <div className='add'
-                                             onClick={() => this.props.handleAddFood(this.props.foodList, item.get('id'))}>+
+                                             onClick={() => handleAddFood(foodList, item.get('id'))}>
+                                            +
                                         </div>
                                     </div>
                                 </FoodItem>
@@ -59,6 +61,7 @@ class Choose extends PureComponent {
 
 const mapStateToProps = (state) => ({
     foodList: state.getIn(['order', 'food', 'foodList']),
+    totalChoosedKinds: state.getIn(['order','select','totalChoosedKinds']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
