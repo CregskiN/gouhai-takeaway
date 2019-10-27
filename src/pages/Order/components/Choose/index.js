@@ -42,7 +42,7 @@ class Choose extends PureComponent {
                                                         <div className='food-desc'>{item.get('miaoshu')}</div>
                                                         <div className='food-price'>
                                                         <span
-                                                            className='originalPrice'>原价:￥{item.get('originPrice')}</span>
+                                                            className='originalPrice'>原价:￥{item.get('originalPrice')}</span>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <span
                                                                 className='currentPrice'>现价:￥{item.get('currentPrice')}</span>
