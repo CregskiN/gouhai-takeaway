@@ -8,7 +8,10 @@ const defaultState = fromJS({
         originalPrice: '',
         currentPrice: '',
         enable: true,
-        isUnderRevision: false
+        miaoshu: "无",
+        sum: 1,
+        isUnderRevision: false,
+        isSeeMore: false
     },
 });
 
@@ -38,7 +41,10 @@ export default (state = defaultState, action) => {
                 originalPrice: '',
                 currentPrice: '',
                 enable: true,
-                isUnderRevision: false
+                miaoshu: "无",
+                sum: 1,
+                isUnderRevision: false,
+                isSeeMore: false
             }));
 
         default:

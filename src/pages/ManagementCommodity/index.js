@@ -12,7 +12,11 @@ import {
     CommodityPrice,
     OriginalPriceSetting,
     CommodityController,
-    CommodityControllerButton
+    CommodityControllerButton,
+    SeeMore,
+    CommodityBubble,
+    DeleteCommodity,
+    Mask
 } from "./style";
 import Switch from "../../common/Switch";
 
@@ -93,7 +97,22 @@ class ManagementCommodity extends Component {
                                                         onClick={() => {this.props.handleCancel(item.get('id'));}}
                                                     >取消
                                                     </CommodityControllerButton>
+                                                    <SeeMore onClick={() => {this.props.handleSeeMore(item.get('id'));}}>
+                                                        <div className="spot" />
+                                                        <div className="spot" />
+                                                        <div className="spot" />
+                                                    </SeeMore>
                                                 </CommodityController>
+                                                {
+                                                    // 判断seeMore气泡是否显示
+                                                    item.get('isSeeMore') ?
+                                                        <CommodityBubble>
+                                                            <DeleteCommodity
+                                                                onClick={() => {this.props.handleDeleteCommodity(item.get('id'))}}
+                                                            >删除商品
+                                                            </DeleteCommodity>
+                                                        </CommodityBubble> : null
+                                                }
                                             </Fragment>
                                     }
                                 </CommodityItem>
@@ -101,6 +120,12 @@ class ManagementCommodity extends Component {
                         })
                     }
                 </CommodityList>
+                {
+                    this.props.isShowMask ?
+                        <Mask
+                            onClick={() => {this.props.handleMask(this.props.temCommodity.get('id'));}}
+                        /> : null
+                }
             </Container>
         )
     }
@@ -125,13 +150,14 @@ class ManagementCommodity extends Component {
 const mapStateToProps = (state) => ({
     commodityList: state.getIn(['managementCommodity', 'commodityList']),
     revisionEnable: state.getIn(['managementCommodity', 'revisionEnable']),
-    temCommodity: state.getIn(['managementCommodity', 'temCommodity'])
+    temCommodity: state.getIn(['managementCommodity', 'temCommodity']),
+    isShowMask: state.getIn(['managementCommodity', 'isShowMask'])
 });
 const mapDispatchToProps = (dispatch) => ({
     // 从服务器加载商品列表
     loadCommodityList(commodityList) {
         console.log(commodityList);
-        dispatch(actionCreators.loadCommodity(commodityList));
+        // dispatch(actionCreators.loadCommodity(commodityList));
     },
 
     // 点击Switch开关时，切换enable，并向服务器发送enable更改信息。注意：这里的item是immutable对象
@@ -174,6 +200,21 @@ const mapDispatchToProps = (dispatch) => ({
     //  点击"取消"触发，退出编辑模式
     handleCancel(id) {
         dispatch(actionCreators.onCancel(id));
+    },
+
+    // 点击seeMore触发，弹出气泡，打开Mask遮罩
+    handleSeeMore(id) {
+        dispatch(actionCreators.onSeeMore(id));
+    },
+
+    // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
+    handleDeleteCommodity(id) {
+        dispatch(actionCreators.onDeleteCommodity(id));
+    },
+
+    // 点击Mask遮罩触发，隐藏气泡，关闭Mask遮罩
+    handleMask(id) {
+        dispatch(actionCreators.onMask(id));
     }
 });
 

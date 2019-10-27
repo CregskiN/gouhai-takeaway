@@ -10,7 +10,8 @@ const defaultState = fromJS({
         enable: true,
         miaoshu: "无",
         sum: 1,
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     },{
         id: 1,
         name: "炸鸡饭",
@@ -18,7 +19,8 @@ const defaultState = fromJS({
         currentPrice: 10,
         enable: true,
         miaoshu: "无",
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     },{
         id: 2,
         name: "烤肉拌饭",
@@ -27,7 +29,8 @@ const defaultState = fromJS({
         enable: false,
         miaoshu: "无",
         sum: 1,
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     },{
         id: 3,
         name: "黑椒肥牛饭",
@@ -36,7 +39,8 @@ const defaultState = fromJS({
         enable: true,
         miaoshu: "无",
         sum: 1,
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     },{
         id: 4,
         name: "麻辣火锅",
@@ -45,7 +49,8 @@ const defaultState = fromJS({
         enable: true,
         miaoshu: "无",
         sum: 1,
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     },{
         id: 5,
         name: "鸡米花",
@@ -54,9 +59,11 @@ const defaultState = fromJS({
         enable: true,
         miaoshu: "无",
         sum: 1,
-        isUnderRevision: false
+        isUnderRevision: false,
+        isSeeMore: false
     }],
     revisionEnable: true,
+    isShowMask: false,
     temCommodity: {}
 });
 
@@ -115,8 +122,8 @@ export default (state = defaultState, action) => {
         case constants.CURRENT_PRICE_INPUT_CHANGE:
             return state.setIn(['temCommodity', 'currentPrice'], action.value);
 
-        // 点击"保存"触发，保存编辑数据至服务器，并退出编辑模式
-        case constants.ON_SAVE:
+        // redux-thunk私有方法，保存编辑数据至本地store，并退出编辑模式
+        case constants.SAVE_TEM_COMMODITY_TO_LOCAL:
             return state.update('commodityList', ($temList) => {
                 const index = $temList.findIndex(($obj) => {
                     return $obj.get('id') === action.id;
@@ -145,6 +152,53 @@ export default (state = defaultState, action) => {
             }).merge({
                 revisionEnable: true,
                 temCommodity: {}
+            });
+
+        // 点击seeMore触发，弹出气泡，打开Mask遮罩
+        case constants.ON_SEE_MORE:
+            return state.update('commodityList', ($temList) => {
+                const index = $temList.findIndex(($obj) => {
+                    return $obj.get('id') === action.id;
+                });
+                if (index === -1) {
+                    return $temList;
+                } else {
+                    return $temList.update(index, ($obj) => {
+                        return $obj.set('isSeeMore', true);
+                    });
+                }
+            }).set('isShowMask', true);
+
+        // 点击Mask遮罩触发，隐藏气泡，关闭Mask遮罩
+        case constants.ON_MASK:
+            return state.update('commodityList', ($temList) => {
+                const index = $temList.findIndex(($obj) => {
+                    return $obj.get('id') === action.id;
+                });
+                if (index === -1) {
+                    return $temList;
+                } else {
+                    return $temList.update(index, ($obj) => {
+                        return $obj.set('isSeeMore', false);
+                    });
+                }
+            }).set('isShowMask', false);
+
+        // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
+        case constants.DELETE_LOCAL_COMMODITY:
+            return state.update('commodityList', ($temList) => {
+                const index = $temList.findIndex(($obj) => {
+                    return $obj.get('id') === action.id;
+                });
+                if (index === -1) {
+                    return $temList;
+                } else {
+                    return $temList.delete(index);
+                }
+            }).merge({
+                revisionEnable: true,
+                temCommodity: {},
+                isShowMask: false
             });
 
         default:

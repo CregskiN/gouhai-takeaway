@@ -77,7 +77,7 @@ const onSave = (id, temCommodity) => {
 
 // redux-thunk私有方法，保存编辑数据至本地store，并退出编辑模式
 const _SaveTemCommodityToLocal = (id) => ({
-    type: constants.ON_SAVE,
+    type: constants.SAVE_TEM_COMMODITY_TO_LOCAL,
     id,
 });
 
@@ -85,6 +85,31 @@ const _SaveTemCommodityToLocal = (id) => ({
 const onCancel = (id) => ({
     type: constants.ON_CANCEL,
     id,
+});
+
+// 点击seeMore触发，弹出气泡，打开Mask遮罩
+const onSeeMore = (id) => ({
+    type: constants.ON_SEE_MORE,
+    id,
+});
+
+// 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
+const onDeleteCommodity = (id) => {
+    return (dispatch) => {
+        dispatch(_deleteLocalCommodity(id));
+    }
+};
+
+// redux-thunk私有方法，本地删当前商品，关闭Mask遮罩
+const _deleteLocalCommodity = (id) => ({
+    type: constants.DELETE_LOCAL_COMMODITY,
+    id,
+});
+
+// 点击Mask遮罩触发，隐藏气泡，关闭Mask遮罩
+const onMask = (id) => ({
+    type: constants.ON_MASK,
+    id
 });
 
 export {
@@ -96,5 +121,8 @@ export {
     originalPriceInputChange,
     currentPriceInputChange,
     onSave,
-    onCancel
+    onCancel,
+    onSeeMore,
+    onMask,
+    onDeleteCommodity,
 };
