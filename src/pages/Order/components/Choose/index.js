@@ -32,7 +32,9 @@ class Choose extends PureComponent {
                                             in={showEnter}
                                         >
                                             <FoodItem key={item}>
+
                                                 <img onClick={() => console.log(index)} className='food-left logo' src={item.get('imgURL')} alt={''}/>
+
                                                 <div className='food-right'>
                                                     <div className='info'>
                                                         <div className='food-name'>

@@ -107,10 +107,10 @@ export const checkout = (list) => {
     if (readyList.mealTime === '') {
         alert("请选择送餐时间");
         return null;
-    } /*else if (minutesDelete < 0 || minutesDelete > 60) {
+    } else if (minutesDelete < 0 || minutesDelete > 60) {
         alert("我们目前只接受一个小时前点餐~");
         return null;
-    }*/
+    }
 
     //校验选择菜品数
     if (readyList.ChoosedList.length === 0) {
@@ -132,10 +132,10 @@ export const checkout = (list) => {
     }
 
 
-    const myjson = [];
+    let myjson = {};
 
     for (let i = 0; i < readyList.ChoosedList.length; i++) {
-        let json = {
+        myjson = {
             "type": "xie",
             "food_time": readyList.mealTime,
             "food_qunlia": readyList.school,
@@ -145,9 +145,8 @@ export const checkout = (list) => {
             "pay_money": readyList.ChoosedList[i].sum * readyList.ChoosedList[i].currentPrice,
             "pay_time": pay_time
         };
-        myjson.push(json);
     }
-    console.log(myjson[0]);
+
 
     document.cookie = "you_paymoney=" + String(readyList.ChoosedList[0].sum * readyList.ChoosedList[0].currentPrice);
     const myqueren = {
