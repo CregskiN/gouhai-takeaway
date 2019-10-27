@@ -11,28 +11,28 @@ import {actionCreators} from "./store/index";
 
 
 class Choose extends PureComponent {
+
     render() {
         const {showEnter ,foodList,handleAddFood} = this.props;
         return (
             <ChooseWrapper>
                 <FoodWrapper className='choose-food'>
-
                     <span>请选择菜品：</span>
                     <TransitionGroup>
                         {
-                            foodList.map((item) => {
+                            foodList.map((item,index) => {
                                 if(item.get('enable') === false){
                                     return null;
                                 } else {
                                     return (
                                         <CSSTransition
-                                            key={item}
+                                            key={index}
                                             timeout={500}
                                             classNames='listItems'
                                             in={showEnter}
                                         >
                                             <FoodItem key={item}>
-                                                <img className='food-left logo' src={item.get('imgUrl')} alt={''}/>
+                                                <img onClick={() => console.log(index)} className='food-left logo' src={item.get('imgURL')} alt={''}/>
                                                 <div className='food-right'>
                                                     <div className='info'>
                                                         <div className='food-name'>
@@ -42,15 +42,15 @@ class Choose extends PureComponent {
                                                         <div className='food-desc'>{item.get('miaoshu')}</div>
                                                         <div className='food-price'>
                                                         <span
-                                                            className='originalPrice'>原价:{item.get('originPrice')}￥</span>
+                                                            className='originalPrice'>原价:￥{item.get('originPrice')}</span>
                                                             &nbsp;&nbsp;&nbsp;
                                                             <span
-                                                                className='currentPrice'>现价:{item.get('currentPrice')}￥</span>
+                                                                className='currentPrice'>现价:￥{item.get('currentPrice')}</span>
                                                         </div>
                                                     </div>
                                                     <div className='add'
                                                          onClick={() => handleAddFood(foodList, item.get('id'))}>
-                                                        +
+                                                        <span>+</span>
                                                     </div>
                                                 </div>
                                             </FoodItem>
@@ -94,7 +94,7 @@ class Choose extends PureComponent {
 
 const mapStateToProps = (state) => ({
     foodList: state.getIn(['order', 'food', 'foodList']),
-    totalChoosedKinds: state.getIn(['order', 'select', 'totalChoosedKinds']),
+    totalChoosedKinds: state.getIn(['order', 'select', 'totalChoosedKinds']), //限制选中菜品种数
     showEnter: state.getIn(['order','food','showEnter'])
 });
 

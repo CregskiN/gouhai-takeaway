@@ -1,4 +1,3 @@
-
 import {actionTypes} from './index';
 
 export const changeSum = (operate, id) => { //传送至shoppingTab的reducer
@@ -86,22 +85,44 @@ export const checkout = (list) => {
         .getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
     let flagzhifu = false;
 
+    //校验送餐地点
     if (readyList.school === '') {
         alert("请选择送餐地点");
         return null;
+    } else if (readyList.school === '_forbidden') {
+        alert("对不起，您选择的送餐地点不在服务区");
+        return null;
     }
+    //校验送餐时间
+
+    console.log("小时", readyList.mealTime.slice(0, 2));
+    console.log("分钟", readyList.mealTime.slice(3, 5));
+    console.log("小时", pay_time.slice(11, 13));
+    console.log("分钟", pay_time);
+
+    let minutesDelete = parseInt(parseInt(readyList.mealTime.slice(0, 2)) * 60 + parseInt(readyList.mealTime.slice(3, 5)))
+        - (time.getHours() * 60 + time.getMinutes());
+    console.log("距离送餐时间" + minutesDelete + "分钟");
+
     if (readyList.mealTime === '') {
         alert("请选择送餐时间");
         return null;
-    }
+    } /*else if (minutesDelete < 0 || minutesDelete > 60) {
+        alert("我们目前只接受一个小时前点餐~");
+        return null;
+    }*/
+
+    //校验选择菜品数
     if (readyList.ChoosedList.length === 0) {
         alert("请选择菜品");
         return null;
     }
+    //校验取餐人姓名
     if (readyList.personName === '') {
         alert("请输入取餐人姓名");
         return null;
     }
+    //校验手机号
     if (readyList.cellphoneNumber === '') {
         alert("请输入取餐人电话");
         return null;
@@ -158,6 +179,7 @@ export const checkout = (list) => {
         console.log("Connect success");
         flagzhifu = true;
         ws.send(JSON.stringify(myjson));
+        _locationToDianCanIndex();
     };
 
     ws.onmessage = (cb) => { //收到服务器数据 后的回调
@@ -170,10 +192,14 @@ export const checkout = (list) => {
     }
 };
 
-//localStorage试验！
+const _locationToDianCanIndex = () => {
+    window.location.href = '../diancan.html';
+};
+
+/*//localStorage试验！
 export const checkoutLocalStorage = () => {
 
-};
+};*/
 
 
 /*

@@ -7,6 +7,7 @@ const defaultState = fromJS({
     totalPrice: 0,
     totalSum: 0,
     totalChoosedKinds: 0,
+
     showTransition: false,
 });
 
@@ -14,9 +15,9 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case chooseActionTypes.ADD_FOOD: //用户点击 添加至购物车
             return _add_food(state, action);
-        case checkoutActionTypes.ADD_SUM:
+        case checkoutActionTypes.ADD_SUM: //增加相同菜品数
             return _change_sum(state, action);
-        case checkoutActionTypes.LESS_SUM:
+        case checkoutActionTypes.LESS_SUM: //减少相同菜品数
             return _change_sum(state, action);
 
 
@@ -30,7 +31,6 @@ const _change_sum = (state, action) => {
     let newTotalPrice = state.get('totalPrice');
     const changeSum_id = action.id;
     let newTotalChoosedKinds = state.get('totalChoosedKinds');
-
 
     if (action.type === checkoutActionTypes.ADD_SUM) {
         for (let i = newList.length - 1; i >= 0; i--) {

@@ -58,10 +58,11 @@ export const FoodItem = styled.div` /*还未设置高度！！*/
             width: 20px;
             height: 20px;
             color: white;
-            font-size: 18px;
-            line-height: 18px;
-            text-align: center;
             border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
         .food-price{
             .originalPrice{

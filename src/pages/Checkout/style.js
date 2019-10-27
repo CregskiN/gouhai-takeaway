@@ -100,6 +100,9 @@ export const HasChoosedItem = styled.div`
 export const SchoolWrapper = styled.div`
     width: 100%;
     margin: 10px;
+    .ic {
+        display: inline-block;
+    }
     .wrap{
         width: 100%;
         .schoolAndTime-cas { //可以加点击动画
@@ -114,16 +117,6 @@ export const Input = styled.input`
     border-radius: 5px;
     box-shadow: #f2f2f2 0 0 10px;
 `;
-
-export const SubmitButton = styled.div`
-    display: inline-block;
-    background: #fff;
-    padding: 2px 4px;
-    border: solid 1px #f2f2f2;
-    border-radius: 5px;
-    box-shadow: #f2f2f2 0 0 10px;
-`;
-
 
 export const ShoppingWrapper = styled.div`
     position: fixed;

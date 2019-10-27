@@ -10,13 +10,13 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
     switch (action.type) {
         case actionTypes.GET_ORDERLIST:
-            console.log(action.foodList);
             return _getOrderList(state,action);
 
         default:
             return state;
     }
 };
+
 
 
 const _getOrderList = (state, action) => {

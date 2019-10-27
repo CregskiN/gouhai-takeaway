@@ -6,6 +6,7 @@ import {actionCreators} from './store/index';
 import {actionTypes} from './store/index';
 import {fromJS} from 'immutable';
 import {CSSTransition} from 'react-transition-group';
+import {OrderIconfont} from "../Order/images/iconfont/iconfont";
 import {
     CheckoutWrapper,
     SchoolWrapper,
@@ -58,16 +59,20 @@ class Checkout extends PureComponent {
                 <SchoolWrapper className='choose-schoolAndTime'>
                     <Input onChange={() => handleChangeInputName(this.inputNameRef)} className='inputName'
                            placeholder='请在此输入你的名字'
-                           ref={(inputName) => this.inputNameRef = inputName}/>
+                           ref={(inputName) => this.inputNameRef = inputName} />
+                        <i className="iconfont ic">&#xe643;</i>
+
                     <Input onChange={() => handleChangeInputCellphoneNumber(this.inputCellphoneNumberRef)}
-                           className='inputCellphoneNum' placeholder='请在此输入你的手机号'
-                           ref={(inputCellphoneNum) => this.inputCellphoneNumberRef = inputCellphoneNum}/>
+                            className='inputCellphoneNum' placeholder='请在此输入你的手机号'
+                           ref={(inputCellphoneNum) => this.inputCellphoneNumberRef = inputCellphoneNum} />
+                        <i className="iconfont ic">&#xe600;</i>
+
+
                     <div className='wrap'>
                         <Cascader className='schoolAndTime-cas' options={options}
                                   onChange={(value, selectedOptions) => handleSelectSchoolAndMealTime(value)}
                                   placeholder="请在此选择学校和时间"/>
                     </div>
-                    {/*<SubmitButton>提交</SubmitButton>*/}
                 </SchoolWrapper>
 
                 <ShoppingWrapper>
@@ -103,8 +108,7 @@ class Checkout extends PureComponent {
                         </div>
                     </TabRight>
                 </ShoppingWrapper>
-
-
+                <OrderIconfont/>
             </CheckoutWrapper>
         )
     }

@@ -12,23 +12,20 @@ const defaultState = fromJS({
     totalPrice: '',
 
     showTransition: false,
-    /*orderTime: '',
-    name: '',
-    orderList: '',*/
 
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case actionTypes.SELECT_SCHOOLANDMEALTIME:
+        case actionTypes.SELECT_SCHOOLANDMEALTIME: //选择学校和送餐时间
             return _addSchoolAndMealTime(state, action);
-        case actionTypes.CHANGE_INPUTNAME:
+        case actionTypes.CHANGE_INPUTNAME: //输入名字
             return _changeName(state, action);
-        case actionTypes.CHANGE_INPUTCELLPHONENUMBER:
+        case actionTypes.CHANGE_INPUTCELLPHONENUMBER: //输入手机号码
             return _changeCellphoneNumber(state, action);
-        case actionTypes.CHECKOUT_ORDERTIMEANDTOTALPRICE:
+        case actionTypes.CHECKOUT_ORDERTIMEANDTOTALPRICE: //下单时间
             return _addOrderTimeAndTotalPrice(state,action);
-        case actionTypes.CHANGE_SHOWTRANSITION:
+        case actionTypes.CHANGE_SHOWTRANSITION: //控制小车动画
             return _changeShowTransition(state,action);
 
         default:
