@@ -73,6 +73,20 @@ export const FoodItem = styled.div` /*还未设置高度！！*/
         }
     }
 
+    &.listItems-enter {
+        transition: all .5s ease-out;
+        transform: translate(0,150px);
+        opacity: 0;
+    }
+    &.listItems-enter-active {
+        transform: translate(0,0);
+        opacity: 1;
+    }
+    &.listItems-enter-done {
+        transform: translate(0,0);
+        opacity: 1;
+    }
+    
 `;
 
 

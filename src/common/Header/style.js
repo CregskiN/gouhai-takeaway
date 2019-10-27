@@ -12,7 +12,19 @@ export const HeaderWrapper = styled.div`
         .logo {
             height: 100%;
             border-radius: 50%;
+            
+        &.logoEnter-enter{
+            transition: all .5s;
+            opacity: .5;
         }
+        &.logoEnter-enter-active{
+            opacity: 1;
+        }
+         &.logoEnter-enter-done{
+            opacity: 1;
+         }
+            
+        
     }
 `;
 

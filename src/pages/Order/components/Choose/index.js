@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
+import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {
     ChooseWrapper,
     FoodItem,
@@ -11,49 +12,81 @@ import {actionCreators} from "./store/index";
 
 class Choose extends PureComponent {
     render() {
-        const {foodList, handleAddFood} = this.props;
+        const {showEnter ,foodList,handleAddFood} = this.props;
         return (
             <ChooseWrapper>
                 <FoodWrapper className='choose-food'>
 
                     <span>请选择菜品：</span>
-
-                    {
-                        foodList.map((item) => {
-                            return (
-                                <FoodItem key={item}>
-                                    <img className='food-left logo' src={item.get('imgUrl')} alt={''}/>
-                                    <div className='food-right'>
-                                        <div className='info'>
-                                            <div className='food-name'>
-                                                {item.get('name')}&nbsp;
-                                                <i className="iconfont ic">&#xe61f;</i>
-                                            </div>
-                                            <div className='food-desc'>{item.get('desc')}</div>
-                                            <div className='food-price'>
-                                                <span className='originalPrice'>原价:{item.get('originPrice')}￥</span>
-                                                &nbsp;&nbsp;&nbsp;
-                                                <span className='currentPrice'>现价:{item.get('currentPrice')}￥</span>
-                                            </div>
-                                        </div>
-                                        <div className='add'
-                                             onClick={() => handleAddFood(foodList, item.get('id'))}>
-                                            +
-                                        </div>
-                                    </div>
-                                </FoodItem>
-                            )
-                        })
-                    }
+                    <TransitionGroup>
+                        {
+                            foodList.map((item) => {
+                                if(item.get('enable') === false){
+                                    return null;
+                                } else {
+                                    return (
+                                        <CSSTransition
+                                            key={item}
+                                            timeout={500}
+                                            classNames='listItems'
+                                            in={showEnter}
+                                        >
+                                            <FoodItem key={item}>
+                                                <img className='food-left logo' src={item.get('imgUrl')} alt={''}/>
+                                                <div className='food-right'>
+                                                    <div className='info'>
+                                                        <div className='food-name'>
+                                                            {item.get('name')}&nbsp;
+                                                            <i className="iconfont ic">&#xe61f;</i>
+                                                        </div>
+                                                        <div className='food-desc'>{item.get('miaoshu')}</div>
+                                                        <div className='food-price'>
+                                                        <span
+                                                            className='originalPrice'>原价:{item.get('originPrice')}￥</span>
+                                                            &nbsp;&nbsp;&nbsp;
+                                                            <span
+                                                                className='currentPrice'>现价:{item.get('currentPrice')}￥</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className='add'
+                                                         onClick={() => handleAddFood(foodList, item.get('id'))}>
+                                                        +
+                                                    </div>
+                                                </div>
+                                            </FoodItem>
+                                        </CSSTransition>
+                                    )
+                                }
+                            })
+                        }
+                    </TransitionGroup>
                 </FoodWrapper>
-
-
             </ChooseWrapper>
         )
     }
 
     componentDidMount() {
-        this.props.getOrderList();
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        let receiveList;
+        const js = {
+            type: "caidan"
+        };
+
+        ws.onopen = (event) => {
+            console.log("Connection open...");
+            ws.send(JSON.stringify(js));
+        };
+
+        ws.onmessage = (response) => {
+            receiveList = JSON.parse(JSON.parse(response.data).data);
+            console.log(receiveList);
+            ws.close();
+        };
+
+        ws.onclose = (event) => {
+            console.log("Connection closed");
+            this.props.getOrderList(receiveList);
+        };
     }
 
 }
@@ -61,12 +94,13 @@ class Choose extends PureComponent {
 
 const mapStateToProps = (state) => ({
     foodList: state.getIn(['order', 'food', 'foodList']),
-    totalChoosedKinds: state.getIn(['order','select','totalChoosedKinds']),
+    totalChoosedKinds: state.getIn(['order', 'select', 'totalChoosedKinds']),
+    showEnter: state.getIn(['order','food','showEnter'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getOrderList() {
-        dispatch(actionCreators.getOrderList());
+    getOrderList(receiveList) {
+        dispatch(actionCreators.getOrderList(receiveList));
     },
     handleAddFood(foodList, id) {
         dispatch(actionCreators.addShoppingCart(foodList, id));

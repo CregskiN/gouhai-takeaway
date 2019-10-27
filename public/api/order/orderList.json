@@ -7,8 +7,7 @@
             "desc": "好吃不贵，吃过都说好！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/b451cbfc875d11e6b87c0242ac110003_600w_495h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 2,
@@ -16,8 +15,7 @@
             "desc": "有蛋有肉美滋滋！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/164c4b0c8a8d11e6b87c0242ac110003_1619w_1080h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 3,
@@ -25,8 +23,7 @@
             "desc": "妈妈我想吃烤肉拌饭",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 4,
@@ -34,8 +31,7 @@
             "desc": "好吃不贵，吃过都说好！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 5,
@@ -43,8 +39,7 @@
             "desc": "好吃不贵，吃过都说好！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 6,
@@ -52,8 +47,7 @@
             "desc": "好吃不贵，吃过都说好！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         },
         {
             "id": 7,
@@ -61,8 +55,7 @@
             "desc": "好吃不贵，吃过都说好！",
             "originPrice": 15,
             "currentPrice": 10,
-            "sum": 1,
-            "imgUrl": "http://i2.chuimg.com/67aef6a2ff4511e6bc9d0242ac110002_1280w_960h.jpg?imageView2/2/w/660/interlace/1/q/90"
+            "sum": 1
         }
     ]
 

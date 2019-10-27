@@ -146,7 +146,21 @@ export const TabLeft = styled.div`
     border-right: solid 1.5px #fff;  /*1.5px 生效！*/
     .takeaway-img{
         height: 70%;
-        margin: 0 6px 0 20px;     
+        margin: 0 6px 0 20px;    
+        
+        &.takeaway-enter {
+            transition: all 1s ;
+        }
+         &.takeaway-enter,&.takeaway-enter-active {
+            transform: translate(400% ,0);
+        }
+        &.takeaway-enter-done {
+            transform: translate(400%,0);
+        }
+        &.takeaway-exit {
+            transition: all 1s ;
+        }
+         
     }
     .totalPrice{
         font-size: 20px;

@@ -22,10 +22,31 @@ export const TabLeft = styled.div`
     .takeaway-img{
         height: 70%;
         margin: 0 6px 0 20px;     
+        
+        &.fastFoodIcon-enter {
+            transition: all .25s ease-out;
+        }
+        &.fastFoodIcon-enter-active {
+            transform: scale(1.1);
+        }
+        &.fastFoodIcon-exit{
+            transition: all .25s ease-out;
+        }
+        &.fastFoodIcon-exit-active{
+            transform: scale(1.1);
+        }
+        
+    
     }
     .totalPrice{
         font-size: 20px;
     }
+    
+    
+    
+    
+    
+    
 `;
 
 export const TabRight = styled.div`

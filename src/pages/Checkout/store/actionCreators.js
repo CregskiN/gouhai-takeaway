@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import {actionTypes} from './index';
 
 export const changeSum = (operate, id) => { //传送至shoppingTab的reducer
@@ -53,6 +53,15 @@ export const changeInputCellphoneNumber = (cellphoneNumber) => {
     return (dispatch) => {
         dispatch(changeInputCellphoneNumberAction);
     }
+};
+
+export const changeShowTransition = () => {
+    const changeShowTransitionAction = {
+        type: actionTypes.CHANGE_SHOWTRANSITION,
+    };
+    return (dispatch) => {
+        dispatch(changeShowTransitionAction);
+    };
 };
 
 /*export const checkoutasd = (totalPrice,selectedFoodList) => {

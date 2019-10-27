@@ -4,3 +4,4 @@ export const SELECT_SCHOOLANDMEALTIME = 'checkout/select_schoolAndMealTime';
 export const CHANGE_INPUTNAME = 'checkout/change_inputName';
 export const CHANGE_INPUTCELLPHONENUMBER = 'checkout/change_inputCellphoneNumber';
 export const CHECKOUT_ORDERTIMEANDTOTALPRICE = 'checkout/orderTimeAndTotalPrice';
+export const CHANGE_SHOWTRANSITION = 'checkout/change_showTransition';

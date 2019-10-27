@@ -1,0 +1,1 @@
+export const CHANGE_SHOWTRANSITION = 'shopping/change_showTransition';

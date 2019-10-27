@@ -5,6 +5,7 @@ import {options} from "./options/cascaderoptions";
 import {actionCreators} from './store/index';
 import {actionTypes} from './store/index';
 import {fromJS} from 'immutable';
+import {CSSTransition} from 'react-transition-group';
 import {
     CheckoutWrapper,
     SchoolWrapper,
@@ -29,11 +30,13 @@ class Checkout extends PureComponent {
             totalSum,
             ChoosedList,
             totalPrice,
+            showTransition,
             handleChangeInputName,
             handleChangeInputCellphoneNumber,
             handleCheckout,
             handleSelectSchoolAndMealTime,
-            handleChangeSum
+            handleChangeSum,
+            handleChangeShowTransition,
         } = this.props;
 
         return (
@@ -69,9 +72,14 @@ class Checkout extends PureComponent {
 
                 <ShoppingWrapper>
                     <TabLeft>
-
-                        <img className='takeaway-img' src={require('../Order/images/Shopping/takeaway.png')} alt={''}/>
-
+                        <CSSTransition
+                            timeout={1000}
+                            in={showTransition}
+                            classNames='takeaway'
+                        >
+                            <img  onClick={() => handleChangeShowTransition()} className='takeaway-img' src={require('../Order/images/Shopping/takeaway.png')}
+                                 alt={''}/>
+                        </CSSTransition>
                         <div className='totalPrice'>
                             &nbsp;&nbsp;{'￥' + totalPrice + '.00'}
                         </div>
@@ -88,7 +96,8 @@ class Checkout extends PureComponent {
                                         ChoosedList,
                                         personName,
                                         cellphoneNumber,
-                                        totalPrice})))
+                                        totalPrice
+                                    })))
                             } className='ok'>结账
                             </div>
                         </div>
@@ -131,7 +140,7 @@ const mapStateToProps = (state) => ({
     orderTime: state.getIn(['checkout', 'orderTime']),
     personName: state.getIn(['checkout', 'personName']),
     foodNames: state.getIn(['checkout', 'foodNames']),
-
+    showTransition: state.getIn(['checkout','showTransition']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -141,7 +150,6 @@ const mapDispatchToProps = (dispatch) => ({
 
     handleChangeInputName(inputNameRef) {
         const name = inputNameRef.value;
-        console.log(name);
         dispatch(actionCreators.changeInputName(name));
     },
 
@@ -154,9 +162,13 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actionCreators.selectSchoolAndMealTime(selectSchoolAndMealTime))
     },
 
-    handleCheckout(totalPrice, choosedFoodList) { //已上传
+    handleCheckout(totalPrice, choosedFoodList) { //上传
         console.log("结账被点击了！");
         actionCreators.checkout(totalPrice, choosedFoodList);
+    },
+
+    handleChangeShowTransition(){
+        dispatch(actionCreators.changeShowTransition())
     }
 
 });

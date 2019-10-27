@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable';
-import {actionTypes} from '../../Choose/store/index'
+import {actionTypes as chooseActionTypes} from '../../Choose/store/index'
 import {actionTypes as checkoutActionTypes} from '../../../../Checkout/store/index';
 
 const defaultState = fromJS({
@@ -7,11 +7,12 @@ const defaultState = fromJS({
     totalPrice: 0,
     totalSum: 0,
     totalChoosedKinds: 0,
+    showTransition: false,
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_FOOD: //用户点击 添加至购物车
+        case chooseActionTypes.ADD_FOOD: //用户点击 添加至购物车
             return _add_food(state, action);
         case checkoutActionTypes.ADD_SUM:
             return _change_sum(state, action);
@@ -91,10 +92,11 @@ const _add_food = (state, action) => { //逻辑通！ 算法待优化！！
             ChoosedList: fromJS(oldChoosedList),
             totalPrice: newTotalPrice,
             totalSum: newTotalSum + 1,
+            showTransition: !state.get('showTransition'),
         });
     } else {
         if(newTotalChoosedKinds > 0){
-            console.log("对不起，目前只支持添加一道菜");
+            alert("对不起，目前只支持添加一道菜");
             return state;
         }
         newTotalChoosedKinds += 1;
@@ -104,6 +106,7 @@ const _add_food = (state, action) => { //逻辑通！ 算法待优化！！
             totalPrice: newTotalPrice,
             totalSum: newTotalSum + 1,
             totalChoosedKinds: newTotalChoosedKinds,
+            showTransition: !state.get('showTransition'),
         });
     }
 

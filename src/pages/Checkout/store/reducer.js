@@ -10,8 +10,8 @@ const defaultState = fromJS({
 
     orderTime: '',
     totalPrice: '',
-    selectedList: [], //????????
 
+    showTransition: false,
     /*orderTime: '',
     name: '',
     orderList: '',*/
@@ -28,16 +28,27 @@ export default (state = defaultState, action) => {
             return _changeCellphoneNumber(state, action);
         case actionTypes.CHECKOUT_ORDERTIMEANDTOTALPRICE:
             return _addOrderTimeAndTotalPrice(state,action);
+        case actionTypes.CHANGE_SHOWTRANSITION:
+            return _changeShowTransition(state,action);
+
         default:
             return state;
     }
 }
 
+
+const _changeShowTransition = (state,action) => {
+    return state.merge({
+        showTransition: !state.get('showTransition')
+    })
+};
+
+
+
 const _addOrderTimeAndTotalPrice = (state,action) => {
     return state.merge({
         orderTime: fromJS(action.orderTime),
         totalPrice: fromJS(action.totalPrice),
-        selectedList: fromJS(action.selectedFoodList),
     })
 };
 
