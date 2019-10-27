@@ -11,7 +11,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgURL: ''
     },
 });
 
@@ -29,6 +30,10 @@ export default (state = defaultState, action) => {
         case constants.CURRENT_INPUT_CHANGE:
             return state.setIn(['commodity', 'currentPrice'], action.value);
 
+        // CommodityImgURLInput的value改变时
+        case constants.COMMODITY_IMG_URL_INPUT_CHANGE:
+            return state.setIn(['commodity', 'imgURL'], action.value);
+
         // 点击Switch开关时，切换enable
         case constants.COMMODITY_ENABLE_SWITCH:
             return state.setIn(['commodity', 'enable'], action.enable);
@@ -44,7 +49,8 @@ export default (state = defaultState, action) => {
                 miaoshu: "无",
                 sum: 1,
                 isUnderRevision: false,
-                isSeeMore: false
+                isSeeMore: false,
+                imgURL: ''
             }));
 
         default:

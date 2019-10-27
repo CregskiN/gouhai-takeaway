@@ -7,6 +7,7 @@ import {
     ComponentTitle,
     CommodityTitle,
     CommodityPrice,
+    CommodityImgURL,
     CommodityEnable,
     CommodityPoster,
     PostArea,
@@ -47,6 +48,14 @@ class AddCommodity extends Component {
                         onChange={this.props.handleCurrentPriceInputChange}
                     />
                 </CommodityPrice>
+                <CommodityImgURL>
+                    <input
+                        className="input"
+                        placeholder="图片URL"
+                        value={this.props.commodity.get('imgURL')}
+                        onChange={this.props.handleCommodityImgURLInputChange}
+                    />
+                </CommodityImgURL>
                 <CommodityEnable>
                     <div className="tips">是否可见：</div>
                     <Switch
@@ -96,6 +105,12 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actionCreators.currentPriceInputChange(value));
     },
 
+    // CommodityImgURLInput的value改变时
+    handleCommodityImgURLInputChange(e) {
+        const value = e.target.value;
+        dispatch(actionCreators.commodityImgURLInputChange(value));
+    },
+
     // 点击Switch开关时，切换enable
     handleSwitch(isTurnOn) {
         const newIsTurnOn = !isTurnOn;
@@ -104,10 +119,23 @@ const mapDispatchToProps = (dispatch) => ({
 
     // 点击"添加"时触发，添加数据
     handlePostButton(immutableCommodity) {
+        // if阵列判断异常并提示
+        if (immutableCommodity.get('name') === '') {
+            alert('商品名称不能为空');
+            return
+        }
+        if (immutableCommodity.get('originalPrice') === null) {
+            alert('商品原价不能为空');
+            return;
+        }
+        if (immutableCommodity.get('currentPrice') === null) {
+            alert('商品现价不能为空');
+            return;
+        }
         dispatch(actionCreators.onPost(immutableCommodity));
     },
 
-    // 点击"取消"时触发，返回后台管理首页
+    // 点击"取消"时触发，清空temCommodity
     handleCancelButton() {
         dispatch(actionCreators.onCancel());
     },

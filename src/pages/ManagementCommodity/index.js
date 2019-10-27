@@ -136,12 +136,12 @@ class ManagementCommodity extends Component {
         });
         let ws = new WebSocket("ws://hxsmallgame.cn:3006");
         ws.onopen = () => {
-            console.log('connected');
+            // console.log('connected');
             ws.send(typeStr);
         };
         ws.onmessage = (event) => {
-            console.log(event);
-            console.log(JSON.parse(event.data));
+            // console.log(event);
+            // console.log(JSON.parse(event.data));
             this.props.loadCommodityList(JSON.parse(JSON.parse(event.data).data));
         };
     }
@@ -157,7 +157,7 @@ const mapDispatchToProps = (dispatch) => ({
     // 从服务器加载商品列表
     loadCommodityList(commodityList) {
         console.log(commodityList);
-        // dispatch(actionCreators.loadCommodity(commodityList));
+        dispatch(actionCreators.loadCommodity(commodityList));
     },
 
     // 点击Switch开关时，切换enable，并向服务器发送enable更改信息。注意：这里的item是immutable对象
@@ -207,14 +207,14 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actionCreators.onSeeMore(id));
     },
 
-    // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
-    handleDeleteCommodity(id) {
-        dispatch(actionCreators.onDeleteCommodity(id));
-    },
-
     // 点击Mask遮罩触发，隐藏气泡，关闭Mask遮罩
     handleMask(id) {
         dispatch(actionCreators.onMask(id));
+    },
+
+    // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
+    handleDeleteCommodity(id) {
+        dispatch(actionCreators.onDeleteCommodity(id));
     }
 });
 

@@ -11,7 +11,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     },{
         id: 1,
         name: "炸鸡饭",
@@ -20,7 +21,8 @@ const defaultState = fromJS({
         enable: true,
         miaoshu: "无",
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     },{
         id: 2,
         name: "烤肉拌饭",
@@ -30,7 +32,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     },{
         id: 3,
         name: "黑椒肥牛饭",
@@ -40,7 +43,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     },{
         id: 4,
         name: "麻辣火锅",
@@ -50,7 +54,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     },{
         id: 5,
         name: "鸡米花",
@@ -60,7 +65,8 @@ const defaultState = fromJS({
         miaoshu: "无",
         sum: 1,
         isUnderRevision: false,
-        isSeeMore: false
+        isSeeMore: false,
+        imgUrl: ''
     }],
     revisionEnable: true,
     isShowMask: false,

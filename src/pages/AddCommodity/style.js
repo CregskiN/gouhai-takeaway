@@ -84,6 +84,32 @@ const CommodityPrice = styled.div`
     }
 `;
 
+const CommodityImgURL = styled.div `
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 355px;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    .input {
+        display: block;
+        width: 100%;
+        height: 35px;
+        font-size: 20px;
+        margin-left: 5px;
+        padding-left: 4px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: none;
+    }
+`;
+
 const CommodityEnable = styled.div`
     display: flex;
     flex-direction: row;
@@ -182,6 +208,7 @@ export {
     ComponentTitle,
     CommodityTitle,
     CommodityPrice,
+    CommodityImgURL,
     CommodityEnable,
     CommodityPoster,
     PostArea,

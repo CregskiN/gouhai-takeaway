@@ -15,21 +15,20 @@ const switchTrigger = (id, newIsTurnOn) => ({
     enable: newIsTurnOn
 });
 
-// 点击Switch开关时，向服务器发送enable更改信息
+// 点击Switch开关时，向服务器发送enable更改信息。注意，这里的item是immutable对象，immutable.set是异步方法
 const switchTriggerPost = (item) => {
     return (dispatch) => {
-        item.set('enable', !item.get('enable'));
+        let temObject = item.toJS();
+        temObject.enable = !item.get('enable');
         const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
             type: "changecaidan",
-            data: item.toJS()
+            data: JSON.stringify(temObject)
         });
         let ws = new WebSocket("ws://hxsmallgame.cn:3006");
         ws.onopen = () => {
             console.log('connected');
             ws.send(myStr);
         };
-        console.log(item.toJS());
-        console.log("switchTriggerPost done");
     }
 };
 
@@ -64,7 +63,7 @@ const onSave = (id, temCommodity) => {
         const myCommodity = temCommodity.toJS();
         const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
             type: "changecaidan",
-            data: myCommodity
+            data: JSON.stringify(myCommodity)
         });
         let ws = new WebSocket("ws://hxsmallgame.cn:3006");
         ws.onopen = () => {
@@ -96,6 +95,17 @@ const onSeeMore = (id) => ({
 // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
 const onDeleteCommodity = (id) => {
     return (dispatch) => {
+        const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
+            type: "deletecaidan",
+            data: JSON.stringify({
+                id: id
+            })
+        });
+        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+        ws.onopen = () => {
+            console.log('connected');
+            ws.send(myStr);
+        };
         dispatch(_deleteLocalCommodity(id));
     }
 };

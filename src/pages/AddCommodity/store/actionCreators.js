@@ -20,6 +20,12 @@ const currentPriceInputChange = (value) => ({
     value,
 });
 
+// CommodityImgURLInput的value改变时
+const commodityImgURLInputChange = (value) => ({
+    type: constants.COMMODITY_IMG_URL_INPUT_CHANGE,
+    value,
+});
+
 // 点击Switch开关时，切换enable
 const commodityEnableSwitch = (newIsTurnOn) => ({
     type: constants.COMMODITY_ENABLE_SWITCH,
@@ -31,18 +37,18 @@ const onPost = (immutableCommodity) => {
     return (dispatch) => {
         const myStr = JSON.stringify({
             type: "addcaidan",
-            data: immutableCommodity.toJS()
+            data: JSON.stringify(immutableCommodity.toJS())
         });
         let ws = new WebSocket("ws://hxsmallgame.cn:3006");
-        // console.log(ws);
         ws.onopen = () => {
             console.log('connected');
             ws.send(myStr);
         };
+        dispatch(onCancel());
     };
 };
 
-// 点击"取消"时触发，返回后台管理首页
+// 点击"取消"时触发，清空temCommodity
 const onCancel = () => ({
     type: constants.ON_CANCEL
 });
@@ -51,6 +57,7 @@ export {
     commodityTitleInputChange,
     originalPriceInputChange,
     currentPriceInputChange,
+    commodityImgURLInputChange,
     commodityEnableSwitch,
     onPost,
     onCancel
