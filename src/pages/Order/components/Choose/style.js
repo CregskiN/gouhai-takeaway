@@ -22,7 +22,8 @@ export const FoodItem = styled.div` /*还未设置高度！！*/
     border-radius: 10px;
     box-shadow: #f2f2f2 0 0 10px;
     .logo {
-            width: 22%;
+            width: 22vw;
+            height: 22vw;
             border-radius: 10%;
         }
     .food-right{

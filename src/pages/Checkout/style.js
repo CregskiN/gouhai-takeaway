@@ -113,9 +113,11 @@ export const SchoolWrapper = styled.div`
 
 export const Input = styled.input`
     padding: 5px 5px 5px 20px;
+    margin: 0 0 8px 0;
     border: solid 1px #f2f2f2;
     border-radius: 5px;
     box-shadow: #f2f2f2 0 0 10px;
+    
 `;
 
 export const ShoppingWrapper = styled.div`
