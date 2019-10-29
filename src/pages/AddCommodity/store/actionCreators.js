@@ -41,7 +41,7 @@ const onPost = (immutableCommodity) => {
         });
         let ws = new WebSocket("ws://hxsmallgame.cn:3006");
         ws.onopen = () => {
-            console.log('connected');
+            alert('添加成功');
             ws.send(myStr);
         };
         dispatch(onCancel());
