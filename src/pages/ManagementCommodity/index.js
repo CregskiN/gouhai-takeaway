@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import {actionCreators} from './store'
+import {Redirect} from 'react-router-dom';
 import {
     Container,
     CommodityListTitle,
@@ -22,112 +23,116 @@ import Switch from "../../common/Switch";
 
 class ManagementCommodity extends Component {
     render() {
-        return (
-            <Container>
-                <CommodityList>
-                    <CommodityListTitle>
-                        商品管理
-                        <div className="line" />
-                    </CommodityListTitle>
-                    {
-                        this.props.commodityList.map((item) => {
-                            return (
-                                <CommodityItem key={item.get('id')}>
-                                    {
-                                        // 判断是否处于编辑模式
-                                        !item.get('isUnderRevision') ?
-                                            // 非编辑模式
-                                            <Fragment>
-                                                <CommodityInfo onClick={() => {
-                                                    this.props.handleCommodityInfo(this.props.revisionEnable, item.get('id'), item);
-                                                }}>
-                                                    <div className="commodity-title">{item.get('name')}</div>
-                                                    <CommodityPrice>
-                                                        <div className="original-price">¥{item.get('originalPrice')}</div>
-                                                        <div className="arrow">-></div>
-                                                        <div className="current-price">¥{item.get('currentPrice')}</div>
-                                                    </CommodityPrice>
-                                                </CommodityInfo>
-                                                <CommodityController>
-                                                    <Switch
-                                                        isTurnOn={item.get('enable')}
-                                                        color='1AAD19'
-                                                        onClick={() => {
-                                                            this.props.handleSwitch(item.get('id'), item.get('enable'), item);
-                                                        }}
-                                                    />
-                                                </CommodityController>
-                                            </Fragment>
-                                            :
-                                            // 编辑模式
-                                            <Fragment>
-                                                <CommodityInfo>
-                                                    <CommodityTitleSetting>
-                                                        <div className="tips">名称: </div>
-                                                        <CommodityTitleInput
-                                                            value={this.props.temCommodity.get('name')}
-                                                            onChange={this.props.handCommodityTitleInputChange}
+        if (!this.props.isLogin) {
+            return <Redirect to="/management/login" />
+        } else {
+            return (
+                <Container>
+                    <CommodityList>
+                        <CommodityListTitle>
+                            商品管理
+                            <div className="line" />
+                        </CommodityListTitle>
+                        {
+                            this.props.commodityList.map((item) => {
+                                return (
+                                    <CommodityItem key={item.get('id')}>
+                                        {
+                                            // 判断是否处于编辑模式
+                                            !item.get('isUnderRevision') ?
+                                                // 非编辑模式
+                                                <Fragment>
+                                                    <CommodityInfo onClick={() => {
+                                                        this.props.handleCommodityInfo(this.props.revisionEnable, item.get('id'), item);
+                                                    }}>
+                                                        <div className="commodity-title">{item.get('name')}</div>
+                                                        <CommodityPrice>
+                                                            <div className="original-price">¥{item.get('originalPrice')}</div>
+                                                            <div className="arrow">-></div>
+                                                            <div className="current-price">¥{item.get('currentPrice')}</div>
+                                                        </CommodityPrice>
+                                                    </CommodityInfo>
+                                                    <CommodityController>
+                                                        <Switch
+                                                            isTurnOn={item.get('enable')}
+                                                            color='1AAD19'
+                                                            onClick={() => {
+                                                                this.props.handleSwitch(item.get('id'), item.get('enable'), item);
+                                                            }}
                                                         />
-                                                    </CommodityTitleSetting>
-                                                    <CommodityPrice>
-                                                        <OriginalPriceSetting>
-                                                            <div className="tips">原价: </div>
-                                                            <input className="input"
-                                                                   value={this.props.temCommodity.get('originalPrice')}
-                                                                   onChange={this.props.handleOriginalPriceInputChange}
+                                                    </CommodityController>
+                                                </Fragment>
+                                                :
+                                                // 编辑模式
+                                                <Fragment>
+                                                    <CommodityInfo>
+                                                        <CommodityTitleSetting>
+                                                            <div className="tips">名称: </div>
+                                                            <CommodityTitleInput
+                                                                value={this.props.temCommodity.get('name')}
+                                                                onChange={this.props.handCommodityTitleInputChange}
                                                             />
-                                                        </OriginalPriceSetting>
-                                                        <OriginalPriceSetting>
-                                                            <div className="tips">现价: </div>
-                                                            <input className="input"
-                                                                   value={this.props.temCommodity.get('currentPrice')}
-                                                                   onChange={this.props.handleCurrentPriceInputChange}
-                                                            />
-                                                        </OriginalPriceSetting>
-                                                    </CommodityPrice>
-                                                </CommodityInfo>
-                                                <CommodityController>
-                                                    <CommodityControllerButton
-                                                        className="save"
-                                                        onClick={() => {this.props.handleSave(item.get('id'), this.props.temCommodity);}}
-                                                    >保存
-                                                    </CommodityControllerButton>
-                                                    <CommodityControllerButton
-                                                        className="cancel"
-                                                        onClick={() => {this.props.handleCancel(item.get('id'));}}
-                                                    >取消
-                                                    </CommodityControllerButton>
-                                                    <SeeMore onClick={() => {this.props.handleSeeMore(item.get('id'));}}>
-                                                        <div className="spot" />
-                                                        <div className="spot" />
-                                                        <div className="spot" />
-                                                    </SeeMore>
-                                                </CommodityController>
-                                                {
-                                                    // 判断seeMore气泡是否显示
-                                                    item.get('isSeeMore') ?
-                                                        <CommodityBubble>
-                                                            <DeleteCommodity
-                                                                onClick={() => {this.props.handleDeleteCommodity(item.get('id'))}}
-                                                            >删除商品
-                                                            </DeleteCommodity>
-                                                        </CommodityBubble> : null
-                                                }
-                                            </Fragment>
-                                    }
-                                </CommodityItem>
-                            )
-                        })
+                                                        </CommodityTitleSetting>
+                                                        <CommodityPrice>
+                                                            <OriginalPriceSetting>
+                                                                <div className="tips">原价: </div>
+                                                                <input className="input"
+                                                                       value={this.props.temCommodity.get('originalPrice')}
+                                                                       onChange={this.props.handleOriginalPriceInputChange}
+                                                                />
+                                                            </OriginalPriceSetting>
+                                                            <OriginalPriceSetting>
+                                                                <div className="tips">现价: </div>
+                                                                <input className="input"
+                                                                       value={this.props.temCommodity.get('currentPrice')}
+                                                                       onChange={this.props.handleCurrentPriceInputChange}
+                                                                />
+                                                            </OriginalPriceSetting>
+                                                        </CommodityPrice>
+                                                    </CommodityInfo>
+                                                    <CommodityController>
+                                                        <CommodityControllerButton
+                                                            className="save"
+                                                            onClick={() => {this.props.handleSave(item.get('id'), this.props.temCommodity);}}
+                                                        >保存
+                                                        </CommodityControllerButton>
+                                                        <CommodityControllerButton
+                                                            className="cancel"
+                                                            onClick={() => {this.props.handleCancel(item.get('id'));}}
+                                                        >取消
+                                                        </CommodityControllerButton>
+                                                        <SeeMore onClick={() => {this.props.handleSeeMore(item.get('id'));}}>
+                                                            <div className="spot" />
+                                                            <div className="spot" />
+                                                            <div className="spot" />
+                                                        </SeeMore>
+                                                    </CommodityController>
+                                                    {
+                                                        // 判断seeMore气泡是否显示
+                                                        item.get('isSeeMore') ?
+                                                            <CommodityBubble>
+                                                                <DeleteCommodity
+                                                                    onClick={() => {this.props.handleDeleteCommodity(item.get('id'))}}
+                                                                >删除商品
+                                                                </DeleteCommodity>
+                                                            </CommodityBubble> : null
+                                                    }
+                                                </Fragment>
+                                        }
+                                    </CommodityItem>
+                                )
+                            })
+                        }
+                    </CommodityList>
+                    {
+                        this.props.isShowMask ?
+                            <Mask
+                                onClick={() => {this.props.handleMask(this.props.temCommodity.get('id'));}}
+                            /> : null
                     }
-                </CommodityList>
-                {
-                    this.props.isShowMask ?
-                        <Mask
-                            onClick={() => {this.props.handleMask(this.props.temCommodity.get('id'));}}
-                        /> : null
-                }
-            </Container>
-        )
+                </Container>
+            )
+        }
     }
 
     componentDidMount() {
@@ -148,6 +153,7 @@ class ManagementCommodity extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    isLogin: state.getIn(['login', 'isLogin']),
     commodityList: state.getIn(['managementCommodity', 'commodityList']),
     revisionEnable: state.getIn(['managementCommodity', 'revisionEnable']),
     temCommodity: state.getIn(['managementCommodity', 'temCommodity']),

@@ -95,18 +95,21 @@ const onSeeMore = (id) => ({
 // 点击"删除商品"触发，本地删当前商品，关闭Mask遮罩，并向服务器发送删除指令
 const onDeleteCommodity = (id) => {
     return (dispatch) => {
-        const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
-            type: "deletecaidan",
-            data: JSON.stringify({
-                id: id
-            })
-        });
-        let ws = new WebSocket("ws://hxsmallgame.cn:3006");
-        ws.onopen = () => {
-            console.log('connected');
-            ws.send(myStr);
-        };
-        dispatch(_deleteLocalCommodity(id));
+        const isConfirm = window.confirm('确认删除？');
+        if (isConfirm) {
+            const myStr = JSON.stringify({    // 指示灯，判断发送指令是什么
+                type: "deletecaidan",
+                data: JSON.stringify({
+                    id: id
+                })
+            });
+            let ws = new WebSocket("ws://hxsmallgame.cn:3006");
+            ws.onopen = () => {
+                console.log('connected');
+                ws.send(myStr);
+            };
+            dispatch(_deleteLocalCommodity(id));
+        }
     }
 };
 

@@ -6,9 +6,6 @@ const Container = styled.div `
     align-items: center;
     width: 100%;
     min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background: #f2f2f2;
 `;
 
