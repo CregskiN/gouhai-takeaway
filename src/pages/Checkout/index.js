@@ -28,7 +28,7 @@ class Checkout extends PureComponent {
             school,
             personName,
             cellphoneNumber,
-            totalSum,
+            totalChoosedKinds,
             ChoosedList,
             totalPrice,
             showTransition,
@@ -93,7 +93,7 @@ class Checkout extends PureComponent {
                     <TabRight>
                         <div className='button'>
                             <div onClick={() =>
-                                (totalSum === 0
+                                (totalChoosedKinds === 0
                                     ? null
                                     : handleCheckout(fromJS({
                                         mealTime,
@@ -137,7 +137,7 @@ const getChoosedItem = (item, handleChangeSum) => {
 const mapStateToProps = (state) => ({
     ChoosedList: state.getIn(['order', 'select', 'ChoosedList']),
     totalPrice: state.getIn(['order', 'select', 'totalPrice']),
-    totalSum: state.getIn(['order', 'select', 'totalSum']),
+    totalChoosedKinds: state.getIn(['order','select','totalChoosedKinds']),
     school: state.getIn(['checkout', 'school']),
     mealTime: state.getIn(['checkout', 'mealTime']),
     cellphoneNumber: state.getIn(['checkout', 'cellphoneNumber']),

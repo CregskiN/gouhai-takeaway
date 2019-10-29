@@ -9,7 +9,7 @@ const defaultState = fromJS({
     cellphoneNumber: '',
 
     orderTime: '',
-    totalPrice: '',
+    totalPrice: '', //没有赋值， 作为需要传参的参考
 
     showTransition: false,
 

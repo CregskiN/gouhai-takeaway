@@ -5,7 +5,6 @@ import {actionTypes as checkoutActionTypes} from '../../../../Checkout/store/ind
 const defaultState = fromJS({
     ChoosedList: [],
     totalPrice: 0,
-    totalSum: 0,
     totalChoosedKinds: 0,
 
     showTransition: false,
@@ -31,6 +30,7 @@ const _change_sum = (state, action) => {
     let newTotalPrice = state.get('totalPrice');
     const changeSum_id = action.id;
     let newTotalChoosedKinds = state.get('totalChoosedKinds');
+
 
     if (action.type === checkoutActionTypes.ADD_SUM) {
         for (let i = newList.length - 1; i >= 0; i--) {
@@ -76,7 +76,6 @@ const _add_food = (state, action) => { //逻辑通！ 算法待优化！！
     let newId = (action.item.toJS()).id;
     let flag = 0;   //加入的菜品是否重复标志
     const newTotalPrice = state.get('totalPrice') + action.currentPrice;
-    const newTotalSum = state.get('totalSum');
     let newTotalChoosedKinds = state.get('totalChoosedKinds');
 
     //遍历查看 已有选中列表是否有 与 新选中 相同的项
@@ -91,7 +90,6 @@ const _add_food = (state, action) => { //逻辑通！ 算法待优化！！
         return state.merge({
             ChoosedList: fromJS(oldChoosedList),
             totalPrice: newTotalPrice,
-            totalSum: newTotalSum + 1,
             showTransition: !state.get('showTransition'),
         });
     } else {
@@ -104,7 +102,6 @@ const _add_food = (state, action) => { //逻辑通！ 算法待优化！！
         return state.merge({
             ChoosedList: newChoosedList,
             totalPrice: newTotalPrice,
-            totalSum: newTotalSum + 1,
             totalChoosedKinds: newTotalChoosedKinds,
             showTransition: !state.get('showTransition'),
         });
