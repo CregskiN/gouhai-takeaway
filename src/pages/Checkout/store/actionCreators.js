@@ -81,7 +81,7 @@ export const checkout = (list) => {
         "food_name": readyList.ChoosedList[0].name,
         "personmessage_name": readyList.personName,
         "personmessage_phone": readyList.cellphoneNumber,
-        "pay_money": readyList.totalPrice * 1000,
+        "pay_money": readyList.totalPrice * 100,
         "pay_time": pay_time
     };
     console.log("传输给服务器的数据是" , JSON.stringify(myjson));
@@ -187,7 +187,7 @@ export const checkout = (list) => {
 };
 
 const _locationToDianCanIndex = () => {
-    // window.location.href = '../diancan.html';
+    window.location.href = '../diancan.html';
 };
 
 /*//localStorage试验！

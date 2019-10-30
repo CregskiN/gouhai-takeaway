@@ -12,8 +12,8 @@ export const options = [
                        label: '12:10',
                     },
                     {
-                        value: '18.30',
-                        label: '18:30',
+                        value: '18.10',
+                        label: '18:10',
                     },
                 ],
             },
