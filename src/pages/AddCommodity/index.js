@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from 'react-redux';
 import {actionCreators} from './store';
 import {Link} from "react-router-dom";
+import {Redirect} from 'react-router-dom';
 import {
     Container,
     ComponentTitle,
@@ -19,71 +20,76 @@ import Switch from "../../common/Switch";
 
 class AddCommodity extends Component {
     render() {
-        return (
-            <Container>
-                <ComponentTitle>
-                    添加商品
-                    <div className="line"/>
-                </ComponentTitle>
-                <CommodityTitle>
-                    <input
-                        className="input"
-                        placeholder="名称"
-                        value={this.props.commodity.get('name')}
-                        onChange={this.props.handleCommodityTitleInputChange}
-                    />
-                </CommodityTitle>
-                <CommodityPrice>
-                    <input
-                        className="input"
-                        placeholder="原价"
-                        value={this.props.commodity.get('originalPrice')}
-                        onChange={this.props.handleOriginalPriceInputChange}
-                    />
-                    <div className="separator"/>
-                    <input
-                        className="input"
-                        placeholder="现价"
-                        value={this.props.commodity.get('currentPrice')}
-                        onChange={this.props.handleCurrentPriceInputChange}
-                    />
-                </CommodityPrice>
-                <CommodityImgURL>
-                    <input
-                        className="input"
-                        placeholder="图片URL"
-                        value={this.props.commodity.get('imgURL')}
-                        onChange={this.props.handleCommodityImgURLInputChange}
-                    />
-                </CommodityImgURL>
-                <CommodityEnable>
-                    <div className="tips">是否可见：</div>
-                    <Switch
-                        isTurnOn={this.props.commodity.get('enable')}
-                        color='1AAD19'
-                        onClick={() => {this.props.handleSwitch(this.props.commodity.get('enable'));}}
-                    />
-                </CommodityEnable>
-                <CommodityPoster>
-                    <PostArea>
-                        <div className="tips">添加</div>
-                        <PostButton onClick={() => {this.props.handlePostButton(this.props.commodity)}}>OK</PostButton>
-                    </PostArea>
-                    <div className="separator"/>
-                    <CancelArea>
-                        <div className="tips">取消</div>
-                        <Link to="/management">
-                            <CancelButton onClick={this.props.handleCancelButton}>Cancel</CancelButton>
-                        </Link>
-                    </CancelArea>
-                </CommodityPoster>
-            </Container>
-        )
+        if (!this.props.isLogin) {
+            return <Redirect to="/management/login" />
+        } else {
+            return (
+                <Container>
+                    <ComponentTitle>
+                        添加商品
+                        <div className="line"/>
+                    </ComponentTitle>
+                    <CommodityTitle>
+                        <input
+                            className="input"
+                            placeholder="名称"
+                            value={this.props.commodity.get('name')}
+                            onChange={this.props.handleCommodityTitleInputChange}
+                        />
+                    </CommodityTitle>
+                    <CommodityPrice>
+                        <input
+                            className="input"
+                            placeholder="原价"
+                            value={this.props.commodity.get('originalPrice')}
+                            onChange={this.props.handleOriginalPriceInputChange}
+                        />
+                        <div className="separator"/>
+                        <input
+                            className="input"
+                            placeholder="现价"
+                            value={this.props.commodity.get('currentPrice')}
+                            onChange={this.props.handleCurrentPriceInputChange}
+                        />
+                    </CommodityPrice>
+                    <CommodityImgURL>
+                        <input
+                            className="input"
+                            placeholder="图片URL"
+                            value={this.props.commodity.get('imgURL')}
+                            onChange={this.props.handleCommodityImgURLInputChange}
+                        />
+                    </CommodityImgURL>
+                    <CommodityEnable>
+                        <div className="tips">是否可见：</div>
+                        <Switch
+                            isTurnOn={this.props.commodity.get('enable')}
+                            color='1AAD19'
+                            onClick={() => {this.props.handleSwitch(this.props.commodity.get('enable'));}}
+                        />
+                    </CommodityEnable>
+                    <CommodityPoster>
+                        <PostArea>
+                            <div className="tips">添加</div>
+                            <PostButton onClick={() => {this.props.handlePostButton(this.props.commodity)}}>OK</PostButton>
+                        </PostArea>
+                        <div className="separator"/>
+                        <CancelArea>
+                            <div className="tips">取消</div>
+                            <Link to="/management">
+                                <CancelButton onClick={this.props.handleCancelButton}>Cancel</CancelButton>
+                            </Link>
+                        </CancelArea>
+                    </CommodityPoster>
+                </Container>
+            )
+        }
     }
 }
 
 const mapStateToProps = (state) => ({
-    commodity: state.getIn(['addCommodity', 'commodity']),
+    isLogin: state.getIn(['login', 'isLogin']),
+    commodity: state.getIn(['addCommodity', 'commodity'])
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -27,7 +27,7 @@ const ComponentTitle = styled.div`
 
 const CommodityTitle = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 355px;
@@ -42,9 +42,7 @@ const CommodityTitle = styled.div`
         display: block;
         width: 100%;
         height: 35px;
-        font-size: 20px;
-        margin-left: 5px;
-        padding-left: 4px;
+        font-size: 20px;        
         box-sizing: border-box;
         border-radius: 5px;
         border: none;
@@ -68,16 +66,14 @@ const CommodityPrice = styled.div`
         display: block;
         width: 100%;
         height: 35px;
-        font-size: 20px;
-        margin-left: 5px;
-        padding-left: 4px;
+        font-size: 20px;         
         box-sizing: border-box;
         border-radius: 5px;
         border: none;
     }
     .separator {
         display: block;
-        width: 96%;
+        width: 100%;
         height: 1px;
         border-radius: 1px;
         background: #AAAAAA;
@@ -101,9 +97,7 @@ const CommodityImgURL = styled.div `
         display: block;
         width: 100%;
         height: 35px;
-        font-size: 20px;
-        margin-left: 5px;
-        padding-left: 4px;
+        font-size: 20px;            
         box-sizing: border-box;
         border-radius: 5px;
         border: none;
@@ -123,10 +117,9 @@ const CommodityEnable = styled.div`
     border-radius: 15px;
     padding: 15px;
     box-sizing: border-box;
-    .tips {
-        margin-left: 5px;
+    .tips {        
         color: #777;
-        font-size: 19px;
+        font-size: 20px;
     }
 `;
 
@@ -145,7 +138,7 @@ const CommodityPoster = styled.div`
     box-sizing: border-box;
     .separator {
         display: block;
-        width: 96%;
+        width: 100%;
         height: 1px;
         border-radius: 1px;
         background: #AAAAAA;
@@ -158,10 +151,9 @@ const PostArea = styled.div `
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    .tips {
-        margin-left: 5px;
+    .tips {        
         color: #777;
-        font-size: 19px;
+        font-size: 20px;
     }
 `;
 const PostButton = styled.div `
@@ -182,10 +174,9 @@ const CancelArea = styled.div `
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    .tips {
-        margin-left: 5px;
+    .tips {        
         color: #777;
-        font-size: 19px;
+        font-size: 20px;
     }
     a {
         color: #777;
