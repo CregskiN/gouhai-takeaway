@@ -5,13 +5,16 @@ import {reducer as loginReducer} from '../pages/Login/store';
 import {reducer as managementCommodityReducer} from '../pages/ManagementCommodity/store';
 import {reducer as checkoutReducer} from '../pages/Checkout/store/index';
 import {reducer as addCommodityReducer} from '../pages/AddCommodity/store';
+import {reducer as winnerListReducer} from '../pages/WinnerList/store';
+
 const reducer = combineReducers({
     header: headerReducer,
     order: orderReducer,
     login: loginReducer,
     managementCommodity: managementCommodityReducer,
     checkout: checkoutReducer,
-    addCommodity: addCommodityReducer
+    addCommodity: addCommodityReducer,
+    winnerList: winnerListReducer
 });
 
 export default reducer;

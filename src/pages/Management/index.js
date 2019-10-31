@@ -6,7 +6,9 @@ import {
     Container,
     ButtonTitle,
     Commodity,
-    CommodityButton
+    CommodityButton,
+    Activity,
+    ActivityButton
 } from "./style";
 
 class Management extends Component{
@@ -25,6 +27,12 @@ class Management extends Component{
                             <CommodityButton>添加商品</CommodityButton>
                         </Link>
                     </Commodity>
+                    <Activity>
+                        <ButtonTitle>活动控制</ButtonTitle>
+                        <Link to="/management/winnerlist">
+                            <ActivityButton>中奖名单</ActivityButton>
+                        </Link>
+                    </Activity>
                 </Container>
             )
         }

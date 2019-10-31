@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Management from "./pages/Management";
 import ManagementCommodity from './pages/ManagementCommodity';
 import AddCommodity from './pages/AddCommodity';
+import WinnerList from './pages/WinnerList';
 import Checkout from "./pages/Checkout/index";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path='/management' exact component={Management} />
                     <Route path='/management/commodity' exact component={ManagementCommodity} />
                     <Route path='/management/addcommodity' exact component={AddCommodity} />
+                    <Route path='/management/winnerlist' exact component={WinnerList}/>
                 </HashRouter>
             </Provider>
         </div>
