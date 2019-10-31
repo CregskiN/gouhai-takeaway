@@ -25,6 +25,13 @@ class WinnerList extends Component {
                                 <WinnerInfo>姓名: {item.get('name')}</WinnerInfo>
                                 <WinnerInfo>电话: {item.get('phone')}</WinnerInfo>
                                 <WinnerInfo>日期: {item.get('date')}</WinnerInfo>
+                                <WinnerInfo>
+                                    奖项:
+                                    {
+                                        // 返回中奖项
+                                        this.SwitchAward(item.get('award'))
+                                    }
+                                </WinnerInfo>
                                 <ButtonArea>
                                     <DeleteButton onClick={() => {this.props.handleDeleteButton(item.get('id'));}}>删除记录</DeleteButton>
                                 </ButtonArea>
@@ -34,6 +41,22 @@ class WinnerList extends Component {
                 }
             </Container>
         )
+    }
+
+    // 返回中奖项
+    SwitchAward(award) {
+        switch (award) {
+            case 1:
+                return ' 一等奖';
+            case 2:
+                return ' 二等奖';
+            case 3:
+                return ' 三等奖';
+            case 4:
+                return ' 四等奖';
+            case 5:
+                return '五等奖';
+        }
     }
 }
 

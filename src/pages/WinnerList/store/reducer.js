@@ -6,17 +6,20 @@ const defaultState = fromJS({
         id: 0,
         name: '张三',
         phone: '13347883433',
-        date: '2019-10-29'
+        date: '2019-10-31',
+        award: 2
     },{
         id: 1,
         name: '李四',
         phone: '15713983746',
-        date: '2019-10-30',
+        date: '2019-10-31',
+        award: 1
     },{
         id: 2,
         name: '刘老五',
         phone: '13867436823',
-        date: '2019-10-31'
+        date: '2019-10-31',
+        award: 3
     }]
 });
 
