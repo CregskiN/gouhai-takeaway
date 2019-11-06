@@ -1,6 +1,6 @@
 ## gouhai-takeaway v1.0.0 update log
 
-### Environmental parameters
+### Environmental Parameters
 
 react@16.11.0
 
